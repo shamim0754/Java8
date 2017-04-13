@@ -1,9 +1,11 @@
 ### Warmup ###
 
 1. create a directory
+
 	`mkdir java8`
 
-2. go to java8 directoy and apply gradle init command to create java project
+2. go to java8 directoy and apply `gradle init` command to create java project
+
 	`gradle init --type java-application`
 
 3.  Create App.java at src/main/java/com/javaaround	
