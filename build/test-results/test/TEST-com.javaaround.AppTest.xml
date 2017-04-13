@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-04-13T13:06:28" hostname="Shamim-PC" time="0.015">
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-04-13T13:22:51" hostname="Shamim-PC" time="0.015">
   <properties/>
   <testcase name="testMain" classname="com.javaaround.AppTest" time="0.015"/>
   <system-out><![CDATA[Hello World!
