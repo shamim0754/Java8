@@ -2,7 +2,7 @@
 
 Java 8 provided some great feature .it is released 8 March 2014<br/>
 
-1. New Date Time api(javax.time)
+1. New Date Time api(java.time)
 2. Lambda Expression
 
 ### Warmup ###
@@ -75,3 +75,33 @@ Java 8 provided some great feature .it is released 8 March 2014<br/>
 ![Image of Nested](images/1.png) 		
 
 ### New Date Time api ###
+
+Old date-time API(java.util.Date,java.util.Calendar)  have the following drawbacks 
+
+1. They aren’t thread-safe as a result leading to potential concurrency issues for users.developer would expect to deal with when writing date-handling code
+2.  Poor API design e.g years in java.util.Date start at 1900, months start at 1, and days start at 0.lack of direct methods for date operations.java.util.Date represents number of milli-seconds since the january 1 ,1970.It has no relationship with any particular date, hour, etc . but if you print then " Thu Apr 13 23:47:29 BDT 2017" . causing confusion among developers.
+3.  Developers had to write a lot of code to deal with timezone issues
+
+For above problems,  third-party date and time libraries(Joda-Time) are become popular
+
+For above problems,the author of Joda-Time (Stephen Colebourne) and Oracle,provide new date time api(java.time) under JSR-310
+
+
+Every class of java.time are Immutable(final) value class so that they are thread safe.
+e.g 
+```java
+public final class LocalDate extends Object   
+implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable 
+```
+
+1. Local − Simplified date-time API with no time-zone.
+
+2. Zoned − Specialized date-time API to deal with various timezones.
+
+### LocalDate ###
+
+java.time.LocalDate represents Date with a default format of yyyy-MM-dd.
+
+
+
+
