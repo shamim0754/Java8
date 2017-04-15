@@ -102,7 +102,27 @@ implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
 
 Method | Descript
 ------------ | -------------
-now()  | print date with a default format of yyyy-MM-dd.
+now()  | represent date with a default format of yyyy-MM-dd.
+format(DateTimeFormatter formatter) | represent date with a specified format e.g dd-MM-yyyy
+parse(String str,DateTimeFormatter formatter) | convert to string LocalDate
+
+
+Update App.java
+
+```java
+//now
+LocalDate curdate = LocalDate.now();
+System.out.println("current date " + curdate);
+
+//formatter
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+System.out.println(curdate.format(formatter));
+
+//parse string to date
+String now =  "15-04-2017";
+LocalDate nowdate = LocalDate.parse(now, formatter);
+System.out.println(nowdate);
+```
 
 
 
