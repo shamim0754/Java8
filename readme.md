@@ -100,7 +100,9 @@ implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
 
 ### LocalDate ###
 
-java.time.LocalDate represents Date with a default format of yyyy-MM-dd.
+Method | Descript
+------------ | -------------
+now()  | print date with a default format of yyyy-MM-dd.
 
 
 
