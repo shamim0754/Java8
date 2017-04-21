@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-04-15T12:58:54" hostname="Shamim-PC" time="0.057">
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-04-21T17:26:17" hostname="Shamim-PC" time="0.147">
   <properties/>
-  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.057"/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.147"/>
   <system-out><![CDATA[Hello World!
-current date 2017-04-15
-15-04-2017
+current date 2017-04-21
+21-04-2017
 2017-04-15
+tomorrow 2017-04-22
+nextMonth 2017-05-21
+yesterday 2017-04-20
+beforeMonth 2017-03-21
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

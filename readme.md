@@ -105,6 +105,10 @@ Method | Descript
 now()  | represent date with a default format of yyyy-MM-dd.
 format(DateTimeFormatter formatter) | represent date with a specified format e.g dd-MM-yyyy
 parse(String str,DateTimeFormatter formatter) | convert to string LocalDate
+minusDays(long daysToMinus) | return a copy of this LocalDate with the specified number of days subtracted
+minusMonths(long monthsToSubtract) | rIt is used to return a copy of this LocalDate with the specified number of months subtracted.
+plusDays(long daysToAdd) | return a copy of this LocalDate with the specified number of days Added
+LocalDate	plusMonths(long monthsToAdd) | return a copy of this LocalDate with the specified number of months Added
 
 
 Update App.java
