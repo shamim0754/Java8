@@ -5,20 +5,18 @@ public class App {
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
 
-      // give string default format yyyy-MM-dd
-      LocalDate birthday = LocalDate.parse("1990-12-15"); 
-      // give string other formate
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-      LocalDate birthday2 = LocalDate.parse("15-12-1990",formatter); 
-      LocalTime birthtime = LocalTime.parse("13:30:15");
-      LocalDateTime birthdaytime = LocalDateTime.parse("1990-12-15T13:30:15");
-      
-      System.out.println("current date " + birthday);
-      System.out.println("current date " + birthday2);
-      System.out.println("current time " + birthtime);
-      System.out.println("current datetime " + birthdaytime);
+      LocalDate date1 = LocalDate.of(2009, 12, 31);
+      LocalDate date2 = LocalDate.of(2010, 01, 31);
+      if (date1.isAfter(date2)) 
+            System.out.println("Date1 is after Date2");
 
-
+      if (date1.isBefore(date2)) 
+         System.out.println("Date1 is before Date2");
+     
+      if (date1.isEqual(date2))  // or date1.equals(date2)
+         System.out.println("Date1 is equal Date2");
+     
+      //Above example using compareTo method
       /*//plus day/month from a date 
       LocalDate tomorrow = curdate.plusDays(1); 
       LocalDate nextMonth = curdate.plusMonths(1); 

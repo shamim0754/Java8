@@ -98,7 +98,7 @@ implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
 ### LocalDate,LocalTime,LocalDateTime ###
 
 LocalDate - represent date with a default format of yyyy-MM-dd.<br>
-LocalTime - represents time with a default format of HH-mm-ss.zzz<br>
+LocalTime - represents time with a default format of HH-mm-ss.zzz(nano second)<br>
 LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz<br>
 As their names indicate, they represent the local Date/Time from the system defualt  time zone
 1. Getting current time
@@ -138,7 +138,7 @@ As their names indicate, they represent the local Date/Time from the system defu
 	```java
 	  // give string default format yyyy-MM-dd
       LocalDate birthday = LocalDate.parse("1990-12-15"); 
-      // give string other formate
+      // give string other format
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
       LocalDate birthday2 = LocalDate.parse("15-12-1990",formatter); 
       LocalTime birthtime = LocalTime.parse("13:30:15");
@@ -148,6 +148,29 @@ As their names indicate, they represent the local Date/Time from the system defu
       System.out.println("current date " + birthday2);
       System.out.println("current time " + birthtime);
       System.out.println("current datetime " + birthdaytime);
+	```	
+
+5. check two date before,after,equal
+
+	```java
+	  LocalDate date1 = LocalDate.of(2009, 12, 31);
+      LocalDate date2 = LocalDate.of(2010, 01, 31);
+      if (date1.isAfter(date2)) 
+            System.out.println("Date1 is after Date2");
+
+      if (date1.isBefore(date2)) 
+         System.out.println("Date1 is before Date2");
+     
+      if (date1.isEqual(date2))  // or date1.equals(date2)
+         System.out.println("Date1 is equal Date2");
+     
+      //Above example using compareTo method
+      if (date1.compareTo(date2) > 0) 
+         System.out.println("Date1 is after Date2");
+      else if (date1.compareTo(date2) < 0) 
+         System.out.println("Date1 is before Date2");
+      else if (date1.compareTo(date2) == 0) 
+         System.out.println("Date1 is equal to Date2");
 	```	
 
 
