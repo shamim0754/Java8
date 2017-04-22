@@ -16,7 +16,15 @@ public class App {
       if (date1.isEqual(date2))  // or date1.equals(date2)
          System.out.println("Date1 is equal Date2");
      
-      //Above example using compareTo method
+      //Above example using Only compareTo method
+      if (date1.compareTo(date2) > 0) 
+         System.out.println("Date1 is after Date2");
+      else if (date1.compareTo(date2) < 0) 
+         System.out.println("Date1 is before Date2");
+      else if (date1.compareTo(date2) == 0) 
+         System.out.println("Date1 is equal to Date2");
+
+          
       /*//plus day/month from a date 
       LocalDate tomorrow = curdate.plusDays(1); 
       LocalDate nextMonth = curdate.plusMonths(1); 

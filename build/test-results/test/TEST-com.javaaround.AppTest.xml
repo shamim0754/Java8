@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-04-22T10:20:34" hostname="Shamim-PC" time="0.027">
+  <properties/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.027"/>
+  <system-out><![CDATA[Hello World!
+Date1 is before Date2
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

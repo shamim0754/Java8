@@ -100,7 +100,8 @@ implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
 LocalDate - represent date with a default format of yyyy-MM-dd.<br>
 LocalTime - represents time with a default format of HH-mm-ss.zzz(nano second)<br>
 LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz<br>
-As their names indicate, they represent the local Date/Time from the system defualt  time zone
+As their names indicate, they represent the local Date/Time from the  system clock in the default time zone
+
 1. Getting current time
 
 	Update App.java
@@ -172,6 +173,37 @@ As their names indicate, they represent the local Date/Time from the system defu
       else if (date1.compareTo(date2) == 0) 
          System.out.println("Date1 is equal to Date2");
 	```	
+
+	Note : isEqual(), equals() and compareTo() internally apply the same following logic:
+
+	```java
+	int compareTo0(LocalDate otherDate) {
+	   int cmp = (year - otherDate.year);
+	   if (cmp == 0) {
+	      cmp = (month - otherDate.month);
+	    if (cmp == 0) {
+	       cmp = (day - otherDate.day);
+	    }
+	   }
+	   return cmp;
+	 }
+	```
+6. plus or minus day/month from a date 	
+
+	```java
+	  //plus day/month from a date 
+	  LocalDate tomorrow = curdate.plusDays(1); 
+	  LocalDate nextMonth = curdate.plusMonths(1); 
+	  System.out.println("tomorrow " + tomorrow);
+	  System.out.println("nextMonth " + nextMonth);
+	  
+
+	  //plus day/month from a date
+	  LocalDate yesterday = curdate.minusDays(1);
+	  LocalDate beforeMonth = curdate.minusMonths(1);
+	  System.out.println("yesterday " + yesterday);
+	  System.out.println("beforeMonth " + beforeMonth);
+	```
 
 
 
