@@ -99,32 +99,32 @@ implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
 2. Zoned − Specialized date-time API to deal with various timezones.
 
 ### LocalDate,LocalTime,LocalDateTime ###
-LocalDate - represent date with a default format of yyyy-MM-dd.
-LocalTime - represents time with a default format of HH-mm-ss.zzz
+
+LocalDate - represent date with a default format of yyyy-MM-dd.<br>
+LocalTime - represents time with a default format of HH-mm-ss.zzz<br>
 LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz
 
-	1. Getting current time
+1. Getting current time
 
 	Update App.java
 
-		```java
-		LocalDate curdate = LocalDate.now();
-		LocalTime curtime = LocalTime.now();
-		LocalDateTime curdatetime = LocalDateTime.now();
-		System.out.println("current date " + curdate);
-		System.out.println("current time " + curtime);
-		System.out.println("current datetime " + curdatetime);
+	```java
+	LocalDate curdate = LocalDate.now();
+	LocalTime curtime = LocalTime.now();
+	LocalDateTime curdatetime = LocalDateTime.now();
+	System.out.println("current date " + curdate);
+	System.out.println("current time " + curtime);
+	System.out.println("current datetime " + curdatetime);
+	```
 
-		```
+2. Formatting Date with other format
 
-	2. Formatting Date with other format
+	```java
+	//formatter
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    System.out.println(curdate.format(formatter));
 
-		```java
-		//formatter
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	    System.out.println(curdate.format(formatter));
-
-		```
+	```
 
 
 
