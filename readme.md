@@ -94,39 +94,37 @@ public final class LocalDate extends Object
 implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable 
 ```
 
-1. Local − Simplified date-time API with no time-zone.
+1. Local − Simplified date-time API with no time-zone(defualt system time zone).
 
 2. Zoned − Specialized date-time API to deal with various timezones.
 
-### LocalDate ###
+### LocalDate,LocalTime,LocalDateTime ###
+LocalDate - represent date with a default format of yyyy-MM-dd.
+LocalTime - represents time with a default format of HH-mm-ss.zzz
+LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz
 
-Method | Descript
------------- | -------------
-now()  | represent date with a default format of yyyy-MM-dd.
-format(DateTimeFormatter formatter) | represent date with a specified format e.g dd-MM-yyyy
-parse(String str,DateTimeFormatter formatter) | convert to string LocalDate
-minusDays(long daysToMinus) | return a copy of this LocalDate with the specified number of days subtracted
-minusMonths(long monthsToSubtract) | rIt is used to return a copy of this LocalDate with the specified number of months subtracted.
-plusDays(long daysToAdd) | return a copy of this LocalDate with the specified number of days Added
-LocalDate	plusMonths(long monthsToAdd) | return a copy of this LocalDate with the specified number of months Added
+	1. Getting current time
 
+	Update App.java
 
-Update App.java
+		```java
+		LocalDate curdate = LocalDate.now();
+		LocalTime curtime = LocalTime.now();
+		LocalDateTime curdatetime = LocalDateTime.now();
+		System.out.println("current date " + curdate);
+		System.out.println("current time " + curtime);
+		System.out.println("current datetime " + curdatetime);
 
-```java
-//now
-LocalDate curdate = LocalDate.now();
-System.out.println("current date " + curdate);
+		```
 
-//formatter
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-System.out.println(curdate.format(formatter));
+	2. Formatting Date with other format
 
-//parse string to date
-String now =  "15-04-2017";
-LocalDate nowdate = LocalDate.parse(now, formatter);
-System.out.println(nowdate);
-```
+		```java
+		//formatter
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	    System.out.println(curdate.format(formatter));
+
+		```
 
 
 
