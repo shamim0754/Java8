@@ -94,16 +94,13 @@ public final class LocalDate extends Object
 implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable 
 ```
 
-1. Local − Simplified date-time API with no time-zone(defualt system time zone).
-
-2. Zoned − Specialized date-time API to deal with various timezones.
 
 ### LocalDate,LocalTime,LocalDateTime ###
 
 LocalDate - represent date with a default format of yyyy-MM-dd.<br>
 LocalTime - represents time with a default format of HH-mm-ss.zzz<br>
-LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz
-
+LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz<br>
+As their names indicate, they represent the local Date/Time from the system defualt  time zone
 1. Getting current time
 
 	Update App.java
@@ -125,6 +122,33 @@ LocalDateTime - represents a date-time, with the default format as yyyy-MM-dd-HH
     System.out.println(curdate.format(formatter));
 
 	```
+3. Representing specific time Using of method
+
+	```java
+	LocalDate birthday = LocalDate.of(1990, Month.DECEMBER, 15);
+    LocalTime birthtime = LocalTime.of(13, 30, 15);
+    LocalDateTime birthdaytime = LocalDateTime.of(1990, Month.DECEMBER, 15,13, 30, 15);
+  
+    System.out.println("current date " + birthday);
+    System.out.println("current time " + birthtime);
+    System.out.println("current datetime " + birthdaytime);
+	```	
+4. Representing specific time Using parse method
+
+	```java
+	  // give string default format yyyy-MM-dd
+      LocalDate birthday = LocalDate.parse("1990-12-15"); 
+      // give string other formate
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+      LocalDate birthday2 = LocalDate.parse("15-12-1990",formatter); 
+      LocalTime birthtime = LocalTime.parse("13:30:15");
+      LocalDateTime birthdaytime = LocalDateTime.parse("1990-12-15T13:30:15");
+      
+      System.out.println("current date " + birthday);
+      System.out.println("current date " + birthday2);
+      System.out.println("current time " + birthtime);
+      System.out.println("current datetime " + birthdaytime);
+	```	
 
 
 
