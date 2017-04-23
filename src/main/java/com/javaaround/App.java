@@ -4,42 +4,18 @@ import java.time.format.DateTimeFormatter;
 public class App {
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
+      LocalDate curdate = LocalDate.now();
+      //Extract year 
+      System.out.println("year = " + curdate.getYear());
 
-      LocalDate date1 = LocalDate.of(2009, 12, 31);
-      LocalDate date2 = LocalDate.of(2010, 01, 31);
-      if (date1.isAfter(date2)) 
-            System.out.println("Date1 is after Date2");
+      //Extract month 
+      System.out.println("month = " + curdate.getMonth());
 
-      if (date1.isBefore(date2)) 
-         System.out.println("Date1 is before Date2");
-     
-      if (date1.isEqual(date2))  // or date1.equals(date2)
-         System.out.println("Date1 is equal Date2");
-     
-      //Above example using Only compareTo method
-      if (date1.compareTo(date2) > 0) 
-         System.out.println("Date1 is after Date2");
-      else if (date1.compareTo(date2) < 0) 
-         System.out.println("Date1 is before Date2");
-      else if (date1.compareTo(date2) == 0) 
-         System.out.println("Date1 is equal to Date2");
+      //Extract month value 
+      System.out.println("month value = " + curdate.getMonthValue());
 
-          
-      /*//plus day/month from a date 
-      LocalDate tomorrow = curdate.plusDays(1); 
-      LocalDate nextMonth = curdate.plusMonths(1); 
-      System.out.println("tomorrow " + tomorrow);
-      System.out.println("nextMonth " + nextMonth);
+      //Extract day value 
+      System.out.println("day = " + curdate.getDayOfMonth());
       
-
-      //plus day/month from a date
-      LocalDate yesterday = curdate.minusDays(1);
-      LocalDate beforeMonth = curdate.minusMonths(1);
-      System.out.println("yesterday " + yesterday);
-      System.out.println("beforeMonth " + beforeMonth);
-      
-      /*
-      LocalDate birthday = LocalDate.parse("25-11-1988", formatter);
-      if(curdate.equals())*/
    }
 }

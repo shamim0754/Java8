@@ -188,7 +188,7 @@ As their names indicate, they represent the local Date/Time from the  system clo
 	   return cmp;
 	 }
 	```
-6. plus or minus day/month from a date 	
+6. Adding and subtracting minute/hour/day/month 	
 
 	```java
 	  //plus day/month from a date 
@@ -198,12 +198,28 @@ As their names indicate, they represent the local Date/Time from the  system clo
 	  System.out.println("nextMonth " + nextMonth);
 	  
 
-	  //plus day/month from a date
+	  //minus day/month from a date
 	  LocalDate yesterday = curdate.minusDays(1);
 	  LocalDate beforeMonth = curdate.minusMonths(1);
 	  System.out.println("yesterday " + yesterday);
 	  System.out.println("beforeMonth " + beforeMonth);
 	```
+7. Extracting specific fields
+
+	```java
+	 LocalDate curdate = LocalDate.now();
+     //Extract year 
+     System.out.println("year = " + curdate.getYear());
+
+     //Extract month 
+     System.out.println("month = " + curdate.getMonth());
+
+     //Extract month value 
+     System.out.println("month value = " + curdate.getMonthValue());
+
+     //Extract day value 
+     System.out.println("day = " + curdate.getDayOfMonth());
+	```	
 
 
 
