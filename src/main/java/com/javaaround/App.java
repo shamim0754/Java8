@@ -1,21 +1,22 @@
 package com.javaaround;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAdjusters;
+import java.time.chrono.HijrahDate;
 public class App {
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
-      LocalDate curdate = LocalDate.now();
-      //Extract year 
-      System.out.println("year = " + curdate.getYear());
+      HijrahDate ramadan = HijrahDate.now()
+                .with(ChronoField.DAY_OF_MONTH, 1).with(ChronoField.MONTH_OF_YEAR, 9);
+        System.out.println("HijrahDate : " + ramadan);
 
-      //Extract month 
-      System.out.println("month = " + curdate.getMonth());
+        //HijrahDate -> LocalDate
+        System.out.println("\n--- Ramandan 2016 ---");
+        System.out.println("Start : " + LocalDate.from(ramadan));
 
-      //Extract month value 
-      System.out.println("month value = " + curdate.getMonthValue());
-
-      //Extract day value 
-      System.out.println("day = " + curdate.getDayOfMonth());
+        //until the end of the month
+        System.out.println("End : " + LocalDate.from(ramadan.with(TemporalAdjusters.lastDayOfMonth())));
       
    }
 }
