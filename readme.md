@@ -192,8 +192,8 @@ As their names indicate, they represent the local Date/Time from the  system clo
 
 	```java
 	  //plus day/month from a date 
-	  LocalDate tomorrow = curdate.plusDays(1); 
-	  LocalDate nextMonth = curdate.plusMonths(1); 
+	  LocalDate tomorrow = curdate.plusDays(1); //or curdate.plus(1, ChronoUnit.DAYS); 
+	  LocalDate nextMonth = curdate.plusMonths(1); //or curdate.plus(1, ChronoUnit.MONTHS); 
 	  System.out.println("tomorrow " + tomorrow);
 	  System.out.println("nextMonth " + nextMonth);
 	  
@@ -222,5 +222,33 @@ As their names indicate, they represent the local Date/Time from the  system clo
 	```	
 
 
+### ZoneId ###
 
+Timezones are represented by a `ZoneId`
+
+1. get Available Zone
+
+	```java
+	List<String> zoneList = new ArrayList<>(ZoneId.getAvailableZoneIds());
+	for(String zone : zoneList)
+		System.out.println(zone);
+	```
+2. get system Default Zone
+
+	```java
+	ZoneId currentZone = ZoneId.systemDefault();
+    System.out.println("CurrentZone: " + currentZone);
+	```
+3. specific zone datetime
+
+	```java
+	LocalDateTime tokyodate = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));  
+    System.out.println("Tokyo date and time : " + tokyodate);
+	```
+3. specific zone datetime
+
+	```java
+	LocalDateTime tokyodate = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));  
+    System.out.println("Tokyo date and time : " + tokyodate);
+	```
 
