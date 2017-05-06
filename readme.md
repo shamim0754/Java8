@@ -157,7 +157,7 @@ As their names indicate, they represent the local Date/Time from the  system clo
 	  LocalDate date1 = LocalDate.of(2009, 12, 31);
       LocalDate date2 = LocalDate.of(2010, 01, 31);
       if (date1.isAfter(date2)) 
-            System.out.println("Date1 is after Date2");
+            System.out.println("Date2 is after Date1");
 
       if (date1.isBefore(date2)) 
          System.out.println("Date1 is before Date2");
@@ -167,7 +167,7 @@ As their names indicate, they represent the local Date/Time from the  system clo
      
       //Above example using compareTo method
       if (date1.compareTo(date2) > 0) 
-         System.out.println("Date1 is after Date2");
+         System.out.println("Date2 is after Date1");
       else if (date1.compareTo(date2) < 0) 
          System.out.println("Date1 is before Date2");
       else if (date1.compareTo(date2) == 0) 
@@ -221,7 +221,13 @@ As their names indicate, they represent the local Date/Time from the  system clo
      System.out.println("day = " + curdate.getDayOfMonth());
 	```	
 ### TemporalAdjusters  ### 
-TemporalAdjusters are another nice way for date manipulation.It provides a set of predefined adjusters for finding the first or last day of the month, the first or last day of the year, the last Wednesday of the month, or the first Tuesday after a specific date
+TemporalAdjusters are another nice way for date manipulation.It provides a set of predefined adjusters for finding Following
+
+1. the first/last day of the month
+2. the first/last day of the year
+3. the last Wednesday of the month
+4. the first Tuesday after a specific date
+
 ```java
 LocalDate curdate = LocalDate.now();
 LocalDate firstDate = curdate.with(TemporalAdjusters.firstDayOfMonth());
@@ -237,15 +243,47 @@ LocalDate firstDate = curdate.with(firstDayOfMonth());
 ``` 
 | Adjuster        | Description          | 
 | ------------- |:-------------:|
-| lastDayOfMonth()()      | get last day of the month from any date |
-| lastDayOfYear()      | get last day of the year from any date |
+| firstDayOfMonth(), lastDayOfMonth()      | get first/last day of the month from any date |
+
+| firstDayOfYear(), lastDayOfYear()      | get first/last day of the year from any date |
 | firstDayOfNextMonth()      | get first day of next month from any date |
 | firstDayOfNextYear()      | get first day of next year from any date |
-| next(DayOfWeek.SUNDAY)      | get next sunday from any date |
+| next(DayOfWeek.SUNDAY),previous(DayOfWeek.SUNDAY)      | get next/previous sunday from any date |
+| nextOrSame(), previousOrSame()      | Next/current DayOfWeek |
 | firstInMonth(DayOfWeek.MONDAY)      | get first monday from any date |
 
 [Full List](http://docs.oracle.com/javase/8/docs/api/index.html?java/time/temporal/TemporalAdjusters.html)
 
+### Custom Adjusters ###
+1. Create NextOddDay.java
+```java
+package com.javaaround;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAdjuster;
+
+public class NextOddDay implements TemporalAdjuster {
+	public Temporal adjustInto(Temporal temporalInput) {
+		LocalDate localDate = LocalDate.from(temporalInput);
+		int day = localDate.getDayOfMonth();
+		if (day % 2 == 0) 
+			localDate = localDate.plusDays(1);
+		 else 
+			localDate = localDate.plusDays(2);
+
+		return temporalInput.with(localDate);
+	}
+}	
+```
+
+Usage <br>
+```java
+LocalDate curdate = LocalDate.now();
+LocalDate nextOddDay = curdate.with(new NextOddDay());
+System.out.println(nextOddDay);
+```
 ### ZoneId,ZoneOffset,ZonedDateTime ###
 
 ZoneId - is an identifier for a region(time zones)<br>

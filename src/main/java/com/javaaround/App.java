@@ -28,8 +28,8 @@ public class App {
         offsetDate.with(TemporalAdjusters.lastInMonth(DayOfWeek.THURSDAY));
         System.out.println(offsetDate);  
         LocalDate curdate = LocalDate.now();
-        LocalDate firstDate = curdate.with(firstDayOfMonth());
-        System.out.println(firstDate);
+        LocalDate nextOddDay = curdate.with(new NextOddDay());
+        System.out.println(nextOddDay);
       
    }
 }
