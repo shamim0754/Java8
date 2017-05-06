@@ -151,7 +151,7 @@ As their names indicate, they represent the local Date/Time from the  system clo
       System.out.println("current datetime " + birthdaytime);
 	```	
 
-5. check two date before,after,equal
+5. check two date isBefore,isAfter,isEqual
 
 	```java
 	  LocalDate date1 = LocalDate.of(2009, 12, 31);
@@ -220,11 +220,31 @@ As their names indicate, they represent the local Date/Time from the  system clo
      //Extract day value 
      System.out.println("day = " + curdate.getDayOfMonth());
 	```	
+### TemporalAdjusters  ### 
+TemporalAdjusters are another nice way for date manipulation.It provides a set of predefined adjusters for finding the first or last day of the month, the first or last day of the year, the last Wednesday of the month, or the first Tuesday after a specific date
+```java
+LocalDate curdate = LocalDate.now();
+LocalDate firstDate = curdate.with(TemporalAdjusters.firstDayOfMonth());
+System.out.println(firstDate);
+```
 
+Static imports make this more fluent to read(recommended)
 
-### ZoneId ###
+```java
+import static java.time.temporal.TemporalAdjusters.*;
+LocalDate curdate = LocalDate.now();
+LocalDate firstDate = curdate.with(TemporalAdjusters.firstDayOfMonth());
+System.out.println(firstDate);
+``` 
 
-Timezones are represented by a `ZoneId`
+### ZoneId,ZoneOffset,ZonedDateTime ###
+
+ZoneId - is an identifier for a region(time zones)<br>
+ZoneOffset - is the period of time representing a difference between Greenwich/UTC(Universal time coordinated)<br/>
+ZonedDateTime - combines the LocalDateTime class with the ZoneId class. It is used to represent a full date (year, month, day) and time (hour, minute, second, nanosecond) with a time zone (region/city, such as Europe/Paris).<br/>
+OffsetDateTime - handles a date and time with a corresponding time zone offset from Greenwich/UTC, without a time zone ID.<br/>
+OffsetTime - handles time with a corresponding time zone offset from Greenwich/UTC, without a time zone ID.
+
 
 1. get Available Zone
 
@@ -243,12 +263,33 @@ Timezones are represented by a `ZoneId`
 
 	```java
 	LocalDateTime tokyodate = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));  
-    System.out.println("Tokyo date and time : " + tokyodate);
+    System.out.println("Tokyo date and time now : " + tokyodate);
+
+    LocalDateTime curdatetime = LocalDateTime.now();
+    //ZonedDateTime tokyodate1 = curdatetime.atZone(ZoneId.of("Asia/Tokyo")); 
+    ZonedDateTime tokyodate1 = ZonedDateTime.of(curdatetime,ZoneId.of("Asia/Tokyo"));  
+    System.out.println("Tokyo date and time now : " + tokyodate1);
 	```
-3. specific zone datetime
+4. get offset
 
 	```java
-	LocalDateTime tokyodate = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));  
-    System.out.println("Tokyo date and time : " + tokyodate);
+	ZoneId currentZone = ZoneId.of("Asia/Dacca");  
+    System.out.println("Tokyo date and time : " + currentZone.getRules());
 	```
+4. create offset
+
+	```java
+	ZoneId currentZone = ZoneId.of("Asia/Dacca");  
+    System.out.println("Tokyo date and time : " + currentZone.getRules());
+	```
+5. get OffsetDateTime
+
+	```java
+	LocalDateTime localDate = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
+	ZoneOffset offset = ZoneOffset.of("-08:00");
+
+	OffsetDateTime offsetDate = OffsetDateTime.of(localDate, offset);
+	```	
+
+
 
