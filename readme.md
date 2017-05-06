@@ -228,13 +228,12 @@ LocalDate firstDate = curdate.with(TemporalAdjusters.firstDayOfMonth());
 System.out.println(firstDate);
 ```
 
-Static imports make this more fluent to read(recommended)
+Note : Static imports make this more fluent to read(recommended)
 
 ```java
 import static java.time.temporal.TemporalAdjusters.*;
-LocalDate curdate = LocalDate.now();
-LocalDate firstDate = curdate.with(TemporalAdjusters.firstDayOfMonth());
-System.out.println(firstDate);
+LocalDate firstDate = curdate.with(firstDayOfMonth());
+
 ``` 
 
 ### ZoneId,ZoneOffset,ZonedDateTime ###
