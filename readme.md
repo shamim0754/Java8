@@ -235,6 +235,16 @@ import static java.time.temporal.TemporalAdjusters.*;
 LocalDate firstDate = curdate.with(firstDayOfMonth());
 
 ``` 
+| Adjuster        | Description          | 
+| ------------- |:-------------:|
+| lastDayOfMonth()()      | get last day of the month from any date |
+| lastDayOfYear()      | get last day of the year from any date |
+| firstDayOfNextMonth()      | get first day of next month from any date |
+| firstDayOfNextYear()      | get first day of next year from any date |
+| next(DayOfWeek.SUNDAY)      | get next sunday from any date |
+| firstInMonth(DayOfWeek.MONDAY)      | get first monday from any date |
+
+[Full List](http://docs.oracle.com/javase/8/docs/api/index.html?java/time/temporal/TemporalAdjusters.html)
 
 ### ZoneId,ZoneOffset,ZonedDateTime ###
 
