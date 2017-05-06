@@ -244,7 +244,6 @@ LocalDate firstDate = curdate.with(firstDayOfMonth());
 | Adjuster        | Description          | 
 | ------------- |:-------------:|
 | firstDayOfMonth(), lastDayOfMonth()      | get first/last day of the month from any date |
-
 | firstDayOfYear(), lastDayOfYear()      | get first/last day of the year from any date |
 | firstDayOfNextMonth()      | get first day of next month from any date |
 | firstDayOfNextYear()      | get first day of next year from any date |
