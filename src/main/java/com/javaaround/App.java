@@ -20,15 +20,10 @@ public class App {
 
         //until the end of the month
         System.out.println("End : " + LocalDate.from(ramadan.with(TemporalAdjusters.lastDayOfMonth())));*/
-       LocalDateTime localDate = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
-       ZoneOffset offset = ZoneOffset.of("-08:00");
-
-        OffsetDateTime offsetDate = OffsetDateTime.of(localDate, offset);
-        OffsetDateTime lastThursday =
-        offsetDate.with(TemporalAdjusters.lastInMonth(DayOfWeek.THURSDAY));
-        System.out.println(offsetDate);  
         LocalDate curdate = LocalDate.now();
-        LocalDate nextOddDay = curdate.with(new NextOddDay());
+        LocalDate nextOddDay = curdate.with((Temporal date) -> {
+          return curdate.getDayOfMonth() % 2 == 0 ? curdate.plusDays(1) : curdate.plusDays(2);
+        });
         System.out.println(nextOddDay);
       
    }

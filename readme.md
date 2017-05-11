@@ -227,6 +227,7 @@ TemporalAdjusters are another nice way for date manipulation.It provides a set o
 2. the first/last day of the year
 3. the last Wednesday of the month
 4. the first Tuesday after a specific date
+5. etc.
 
 ```java
 LocalDate curdate = LocalDate.now();
@@ -283,10 +284,18 @@ LocalDate curdate = LocalDate.now();
 LocalDate nextOddDay = curdate.with(new NextOddDay());
 System.out.println(nextOddDay);
 ```
-### Custom Adjusters Using Lamp###
- LocalDate localDate = LocalDate.now();
-    TemporalAdjuster add2days = (Temporal date) -> ((LocalDate)date).plusDays(2);
-    System.out.println("2 days added to "+localDate+" gives: "+localDate.with(add2days));
+### Above Using Lampda expression ###
+
+Since TemporalAdjuster is function interface(when have only one method),So we can use lampd expression
+ 
+```java
+LocalDate curdate = LocalDate.now();
+LocalDate nextOddDay = curdate.with((Temporal date) -> {
+  return curdate.getDayOfMonth() % 2 == 0 ? curdate.plusDays(1) : curdate.plusDays(2);
+});
+System.out.println(nextOddDay);
+```  
+
 ### ZoneId,ZoneOffset,ZonedDateTime ###
 
 ZoneId - is an identifier for a region(time zones)<br>
@@ -353,3 +362,7 @@ Lambda expression is a block of code that can be passed around to execute. It is
 2. Optional parenthesis around parameter: o need to declare a single parameter in parenthesis. For multiple parameters, parentheses are required. e.g a -> a;
 3. Optional curly braces : No need to use curly braces in expression body if the body contains a single statement e.g (int a, int b) -> a / b;
 4. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
+
+### Advantage ###
+1. It eliminates the need of anonymous class and no need to create an object and pass the object around
+
