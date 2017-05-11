@@ -283,6 +283,10 @@ LocalDate curdate = LocalDate.now();
 LocalDate nextOddDay = curdate.with(new NextOddDay());
 System.out.println(nextOddDay);
 ```
+### Custom Adjusters Using Lamp###
+ LocalDate localDate = LocalDate.now();
+    TemporalAdjuster add2days = (Temporal date) -> ((LocalDate)date).plusDays(2);
+    System.out.println("2 days added to "+localDate+" gives: "+localDate.with(add2days));
 ### ZoneId,ZoneOffset,ZonedDateTime ###
 
 ZoneId - is an identifier for a region(time zones)<br>
@@ -338,4 +342,14 @@ OffsetTime - handles time with a corresponding time zone offset from Greenwich/U
 	```	
 
 
+### Lambda Expression ###
+Lambda expression is a block of code that can be passed around to execute. It is a common feature for some programming languages, such as Lisp, Python, Scala. Java 8 introduce it
 
+### Lambda Expression Syntax ###
+
+`parameter -> expression body`
+
+1. Optional type declaration : The compiler can inference the same from the value of the parameter e.g (a, b) -> a - b;
+2. Optional parenthesis around parameter: o need to declare a single parameter in parenthesis. For multiple parameters, parentheses are required. e.g a -> a;
+3. Optional curly braces : No need to use curly braces in expression body if the body contains a single statement e.g (int a, int b) -> a / b;
+4. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
