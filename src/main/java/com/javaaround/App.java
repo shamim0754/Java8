@@ -6,6 +6,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.time.chrono.HijrahDate;
 import java.time.temporal.Temporal;  
 import java.util.*;
+import java.util.function.Supplier;
 import static java.time.temporal.TemporalAdjusters.*;
 public class App {
    public static void main( String[] args ){
@@ -20,11 +21,32 @@ public class App {
 
         //until the end of the month
         System.out.println("End : " + LocalDate.from(ramadan.with(TemporalAdjusters.lastDayOfMonth())));*/
-        LocalDate curdate = LocalDate.now();
-        LocalDate nextOddDay = curdate.with((Temporal date) -> {
-          return curdate.getDayOfMonth() % 2 == 0 ? curdate.plusDays(1) : curdate.plusDays(2);
-        });
-        System.out.println(nextOddDay);
+        /*Person p1 = new Person();
+        p1.setName("Md.Shamim Miah");
+        p1.setAge(28);
+        Person p2 = new Person();
+        p2.setName("Md.Alamin Miah");
+        p2.setAge(36);
+        List<Person> programmers = new ArrayList<>();
+        programmers.add(p1);
+        programmers.add(p2);
+        Person.printPersonsOlderThan(programmers,new CheckPerson() {
+          @Override
+          public boolean searchCriteriaMatch(Person p) {
+              return p.getAge() >= 30;
+          }
+      });
+      Supplier<Integer> num2 = ()->{
+return 3;
+};
+System.out.println(num1 + num2.get());
+      */
+      int num1 = 2;
+      Number num2 = num3-> num3;
+      System.out.println(num1 + num2.get(3));
       
    }
+}
+interface Number{
+  int get(int num);
 }

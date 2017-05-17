@@ -286,8 +286,8 @@ System.out.println(nextOddDay);
 ```
 ### Above Using Lampda expression ###
 
-Since TemporalAdjuster is function interface(when have only one method),So we can use lampd expression
- 
+Since TemporalAdjuster is functional interface(when have only one method),So we can use Lampdd expression
+
 ```java
 LocalDate curdate = LocalDate.now();
 LocalDate nextOddDay = curdate.with((Temporal date) -> {
@@ -352,16 +352,97 @@ OffsetTime - handles time with a corresponding time zone offset from Greenwich/U
 
 
 ### Lambda Expression ###
-Lambda expression is a block of code that can be passed around to execute. It is a common feature for some programming languages, such as Lisp, Python, Scala. Java 8 introduce it
+```java
+package com.javaaround;
+public class App {
+   public static void main( String[] args ){
+      int num1 = 2;
+      Number num2 = new Number(){
+        @Override
+        public int get(int num3){
+          return num3;
+        }
+      
+      };
+      System.out.println(num1 + num2.get(3));
+   }
+}
+interface Number{
+  int get(int num);
+}
+```
+
+Traditional Above OOP style need
+
+1. Create object
+2. do operation on object
+
+that leads to less readable and less maintainable code
+
+Can we bipass above way ? 
+
+Can we assign function as value (num2 is 3) similar way where num1 is  assign to 2 ? 
+
+```java
+package com.javaaround;
+public class App {
+   public static void main( String[] args ){
+      int num1 = 2;
+      Number num2 = public int get(int num3){
+          return num3;
+      };
+      System.out.println(num1 + num2);
+   }
+}
+
+```
+
+It is a common feature for some programming languages, such as Lisp, Python, Scala.That is functional programming language. but you can't do it at java before java8
+
+you do it using Java 8 Lambda expression
+
+```java
+import java.util.function.Supplier;
+
+int num1 = 2;
+Number num2 = (num3)-> num3;
+System.out.println(num1 + num2.get(3));
+
+```
+
+### Advantage functional Programming(Lambda expression)
+
+1. Enable more readable and maintainable code
+2. Enable parallel processing
 
 ### Lambda Expression Syntax ###
 
-`parameter -> expression body`
+```java
+Number num2 = public int get(int num3){
+    return num3;
+};
+```
+ Remove access type , Optional type declaration(The compiler can inference the type from the value of the parameter),function name and insert '->' symbol.Then it is called lambda expression.
 
-1. Optional type declaration : The compiler can inference the same from the value of the parameter e.g (a, b) -> a - b;
-2. Optional parenthesis around parameter: o need to declare a single parameter in parenthesis. For multiple parameters, parentheses are required. e.g a -> a;
-3. Optional curly braces : No need to use curly braces in expression body if the body contains a single statement e.g (int a, int b) -> a / b;
-4. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
+```java
+Number num2 = (num3)->{
+    return num3;
+};
+```
+
+Short notation
+
+1.  No need to use parenthesis  if contain single parameter.but for multiple parameters, parentheses are required.
+```java
+Number num2 = num3->{
+    return num3;
+};
+2. No need to use curly braces & return if contain single expression.but for multiple expression, curly braces & return are required.
+```java
+Number num2 = num3-> num3;
+```
+
+3. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
 
 ### Advantage ###
 1. It eliminates the need of anonymous class and no need to create an object and pass the object around
