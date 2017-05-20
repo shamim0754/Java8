@@ -433,17 +433,15 @@ Number num2 = (num3)->{
 Short notation
 
 1.  No need to use parenthesis  if contain single parameter.but for multiple parameters, parentheses are required.
-```java
-Number num2 = num3->{
-    return num3;
-};
+	```java
+	Number num2 = num3->{
+	    return num3;
+	};
 2. No need to use curly braces & return if contain single expression.but for multiple expression, curly braces & return are required.
-```java
-Number num2 = num3-> num3;
-```
+	```java
+	Number num2 = num3-> num3;
+	```
 
 3. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
 
-### Advantage ###
-1. It eliminates the need of anonymous class and no need to create an object and pass the object around
 
