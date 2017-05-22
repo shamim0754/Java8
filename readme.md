@@ -352,6 +352,8 @@ OffsetTime - handles time with a corresponding time zone offset from Greenwich/U
 
 
 ### Lambda Expression ###
+Provides the implementation of Functional interface(have only one method)
+
 ```java
 package com.javaaround;
 public class App {
@@ -442,6 +444,29 @@ Short notation
 	Number num2 = num3-> num3;
 	```
 
-3. Optional return keyword: The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.e.g (int a, int b) -> { return a * b; };
+### Functional Interface ###
+1. Built In Old
+	1. Runnable#run()	
+	2. Comparator#compare()	
+2. Built In New	
+	1. java.util.function : defines several standard functional interfaces that can we used without creating manually functional interface
+	[List](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+
+	Above functional interface
+	```java 
+	interface Number{
+	  int get(int num);
+	}
+
+	```	
+
+	No need to use it because similar interfaces  `Supplier<T>` define java.util.function
+
+	```java
+	 Supplier<Integer> num2 = ()->{
+      return 3;
+      };
+    System.out.println(num1 + num2.get());
+	```
 
 
