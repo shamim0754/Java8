@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-24T09:09:28" hostname="Shamim-PC" time="0.017">
+  <properties/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.017"/>
+  <system-out><![CDATA[Hello World!
+Person(name=Md.Shamim Miah, age=24, city=Tangail)
+Person(name=Shohel Rana, age=25, city=Rajshahi)
+Person(name=Ilias Gazi, age=30, city=Natore)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

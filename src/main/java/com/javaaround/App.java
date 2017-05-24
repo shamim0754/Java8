@@ -37,15 +37,29 @@ public class App {
           }
       });
       Supplier<Integer> num2 = ()->{
-return 3;
-};
-System.out.println(num1 + num2.get());
+      return 3;
+      };
+      System.out.println(num1 + num2.get());
       */
-      int num1 = 2;
-      Number num2 = num3-> num3;
-      System.out.println(num1 + num2.get(3));
-      
+     
+      List<Person> listPersons = new ArrayList<Person>();
+      listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+      listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+      listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+      //sort by age
+      Collections.sort(listPersons, /*new Comparator<Person>() {
+        @Override
+        public int compare(Person o1, Person o2) {
+          return o1.getAge() - o2.getAge();
+        }
+      }*/
+      (Person o1, Person o2) -> o1.getAge() - o2.getAge()
+      );
+      for(Person person:listPersons)
+        System.out.println(person);
+
    }
+  
 }
 interface Number{
   int get(int num);

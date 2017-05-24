@@ -469,4 +469,61 @@ Short notation
     System.out.println(num1 + num2.get());
 	```
 
+### Collection Sort ###
+1. Add lombok library to generate setter,getter,constructure at runtime
 
+Update build.gradle
+```java
+dependencies {
+   
+    // lombok
+    compile 'org.projectlombok:lombok:1.16.12'
+}
+```
+2. Create Person.java
+
+```java
+package com.javaaround;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+public class Person {
+    private String name;
+    private Integer age;
+    private String city;
+    
+}    
+```
+3. Update App.java sort without lambda
+```java
+List<Person> listPersons = new ArrayList<Person>();
+  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+  listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+  //sort by age
+  Collections.sort(listPersons, new Comparator<Person>() {
+    @Override
+    public int compare(Person o1, Person o2) {
+      return o1.getAge() - o2.getAge();
+    }
+  }
+  
+  );
+  for(Person person:listPersons)
+    System.out.println(person);
+```
+
+4. Update App.java sort using lambda
+```java
+List<Person> listPersons = new ArrayList<Person>();
+  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+  listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+  //sort by age
+  Collections.sort(listPersons, (Person o1, Person o2) -> o1.getAge() - o2.getAge());
+  for(Person person:listPersons)
+    System.out.println(person);
+```
