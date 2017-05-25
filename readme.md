@@ -646,7 +646,7 @@ Method reference creates a lambda expression using using an existing method that
       for(String person:stringArray)
         System.out.println(person);
 	```	
-	
+
 ### java.util.function ###
 1. Predicate
 ```java
@@ -660,7 +660,7 @@ Predicate<Integer> pr = a -> (a > 18); // Creating predicate
 System.out.println(pr.test(10));    // Calling Predicate method
 ```
 
-2. Function : it accept 
+2. Function : Represents a function that accepts one arguments and produces a result.similar Consumer<T> but it has no return type
 ```java
 Interface Function<T,R>{
 R apply(T t)
@@ -670,6 +670,30 @@ R apply(T t)
 ```
 
 ```java
-Function<Integer,String> converter = (i)-> Integer.toString(i);
-System.out.println(converter.apply(3).length());   
+// Using  a  lambda  expression
+Function<Integer, String> func1  = x -> Integer.toBinaryString(x);
+System.out.println(func1.apply(10));
+
+// Using  a  method  reference
+Function<Integer, String> func2  = Integer::toBinaryString;
+System.out.println(func2.apply(10));  
+```
+
+3. Function : Represents a function that accepts two arguments and produces a result.imilar BiConsumer<T,T> but it has no return type.
+```java
+Interface BiFunction<T,R>{
+R apply(T t,U u)
+}
+//T ,U= input type
+//R = function return type
+```
+
+```java
+// Uses a lambda expression
+BiFunction<Integer, Integer, Integer> func1 = (x, y) -> Integer.sum(x, y);
+System.out.println(func1.apply(2, 3));
+
+// Uses a method reference
+BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
+System.out.println(func2.apply(2, 3)); 
 ```

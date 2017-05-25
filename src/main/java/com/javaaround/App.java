@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.function.Predicate;
 import java.util.function.Function;
+import java.util.function.BiFunction;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
 public class App {
@@ -56,13 +57,14 @@ public class App {
       listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
       for(Person person:listPersons)
         System.out.println(person);*/
-      String[] stringArray = { 
-        "Barbara", "James", "Mary", "John",
-        "Patricia", "Robert", "Michael", "Linda" 
-      };
-      Arrays.sort(stringArray, String::compareToIgnoreCase);
-      for(String person:stringArray)
-        System.out.println(person);
+      // Using  a  lambda  expression
+      // Uses a lambda expression
+      BiFunction<Integer, Integer, Integer> func1 = (x, y) -> Integer.sum(x, y);
+      System.out.println(func1.apply(2, 3));
+
+      // Uses a method reference
+      BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
+      System.out.println(func2.apply(2, 3)); 
 
    }
     

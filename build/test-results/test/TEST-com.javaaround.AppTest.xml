@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-25T10:25:35" hostname="Shamim-PC" time="0.015">
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-25T10:52:46" hostname="Shamim-PC" time="0.012">
   <properties/>
-  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.015"/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.012"/>
   <system-out><![CDATA[Hello World!
-Barbara
-James
-John
-Linda
-Mary
-Michael
-Patricia
-Robert
+5
+5
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
