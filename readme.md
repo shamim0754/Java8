@@ -556,6 +556,56 @@ public class App {
   }
 }
 ```
+### Method reference ###
+
+Method reference creates a lambda expression using using an existing method that refer to functional interface implementation
+
+1. Reference to an Static Method
+
+	above example using method reference .
+
+	```java
+	public class App {
+	   public static int get(int num3){  
+	       return num3;
+	   } 
+	   public static void main( String[] args ){
+	      Number num2 = App::get;
+	      System.out.println(num2.get(3));
+	   }
+	}
+	interface Number{
+	  int get(int num);
+	}
+	```
+
+	Builtin functional interface reference(Runnable)
+
+	```java
+	public class App {
+	    public static void ThreadStatus(){  
+	        System.out.println("Thread is running...");  
+	    }  
+	    public static void main( String[] args ){
+	      Thread t=new Thread(App::ThreadStatus);  
+	      t.start(); 
+	    }
+	}
+	```
+2. Reference to an Instance Method
+
+	```java
+		public int get(int num3){  
+	       return num3;
+	   } 
+	   public static void main( String[] args ){
+	      App app = new App();
+	      Number num2 = app::get;
+	      System.out.println(num2.get(3));
+
+	   }
+	}
+	```
 
 ### java.util.function ###
 1. Predicate
@@ -568,4 +618,18 @@ boolean test(T t)
 ```java
 Predicate<Integer> pr = a -> (a > 18); // Creating predicate  
 System.out.println(pr.test(10));    // Calling Predicate method
+```
+
+2. Function : it accept 
+```java
+Interface Function<T,R>{
+R apply(T t)
+}
+//T = input type
+//R = function return type
+```
+
+```java
+Function<Integer,String> converter = (i)-> Integer.toString(i);
+System.out.println(converter.apply(3).length());   
 ```

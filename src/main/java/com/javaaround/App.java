@@ -8,9 +8,13 @@ import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.function.Predicate;
+import java.util.function.Function;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
 public class App {
+   public int get(int num3){  
+       return num3;
+   } 
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
      /* HijrahDate ramadan = HijrahDate.now()
@@ -52,10 +56,12 @@ public class App {
       listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
       for(Person person:listPersons)
         System.out.println(person);*/
-      Predicate<Integer> pr = a -> (a > 18); // Creating predicate  
-      System.out.println(pr.test(10));    // Calling Predicate method    
+      App app = new App();
+      Number num2 = app::get;
+      System.out.println(num2.get(3));
 
    }
+    
   
 }
 interface Number{
