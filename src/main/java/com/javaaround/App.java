@@ -7,6 +7,7 @@ import java.time.chrono.HijrahDate;
 import java.time.temporal.Temporal;  
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.function.Predicate;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
 public class App {
@@ -51,18 +52,12 @@ public class App {
       listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
       for(Person person:listPersons)
         System.out.println(person);*/
-      new App();
+      Predicate<Integer> pr = a -> (a > 18); // Creating predicate  
+      System.out.println(pr.test(10));    // Calling Predicate method    
 
    }
-  public App(){
-    Number num1 = x -> {
-        System.out.println(this);
-        return x;
-    };
-    System.out.println(num1.get(3));  
-  }
+  
 }
-
 interface Number{
   int get(int num);
 }

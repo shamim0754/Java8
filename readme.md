@@ -556,3 +556,16 @@ public class App {
   }
 }
 ```
+
+### java.util.function ###
+1. Predicate
+```java
+interface Predicate<t>{
+boolean test(T t)
+}
+```
+
+```java
+Predicate<Integer> pr = a -> (a > 18); // Creating predicate  
+System.out.println(pr.test(10));    // Calling Predicate method
+```
