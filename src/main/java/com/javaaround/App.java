@@ -8,6 +8,7 @@ import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.function.Supplier;
 import static java.time.temporal.TemporalAdjusters.*;
+import java.util.function.Function;
 public class App {
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
@@ -42,25 +43,26 @@ public class App {
       System.out.println(num1 + num2.get());
       */
      
-      List<Person> listPersons = new ArrayList<Person>();
+      /*List<Person> listPersons = new ArrayList<Person>();
       listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
       listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
       listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
       //sort by age
-      Collections.sort(listPersons, /*new Comparator<Person>() {
-        @Override
-        public int compare(Person o1, Person o2) {
-          return o1.getAge() - o2.getAge();
-        }
-      }*/
-      (Person o1, Person o2) -> o1.getAge() - o2.getAge()
-      );
+      listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
       for(Person person:listPersons)
-        System.out.println(person);
+        System.out.println(person);*/
+      new App();
 
    }
-  
+  public App(){
+    Number num1 = x -> {
+        System.out.println(this);
+        return x;
+    };
+    System.out.println(num1.get(3));  
+  }
 }
+
 interface Number{
   int get(int num);
 }

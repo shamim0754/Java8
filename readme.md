@@ -352,7 +352,7 @@ OffsetTime - handles time with a corresponding time zone offset from Greenwich/U
 
 
 ### Lambda Expression ###
-Provides the implementation of Functional interface(have only one method)
+Provides the implementation of Functional interface(have only one method).Previously it is done by annomous class
 
 ```java
 package com.javaaround;
@@ -453,7 +453,8 @@ Short notation
 	[List](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
 
 	Above functional interface
-	```java 
+	```java
+	@FunctionalInterface //optional,compile error if have more than one method 
 	interface Number{
 	  int get(int num);
 	}
@@ -504,7 +505,7 @@ List<Person> listPersons = new ArrayList<Person>();
   listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
   listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
   //sort by age
-  Collections.sort(listPersons, new Comparator<Person>() {
+  listPersons.sort(new Comparator<Person>() {
     @Override
     public int compare(Person o1, Person o2) {
       return o1.getAge() - o2.getAge();
@@ -523,7 +524,35 @@ List<Person> listPersons = new ArrayList<Person>();
   listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
   listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
   //sort by age
-  Collections.sort(listPersons, (Person o1, Person o2) -> o1.getAge() - o2.getAge());
+  listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
   for(Person person:listPersons)
     System.out.println(person);
+```
+
+### Variable Scope ###
+1. lambda expression can access local variables that creates effectively final variable so you can't reassign
+
+```java
+String x = "Lambda"; 
+Function<String,String> func1 = y -> {
+// x="expression"; // compile error
+return y + " "+ x ;
+};
+System.out.println(func1.apply("javaaround.com"));
+```
+2. this referece does not refer lambda expression type.it refer object that use lambda
+```java
+public class App {
+   public static void main( String[] args ){
+      new App();
+
+   }
+  public App(){
+    Number num1 = x -> {
+        System.out.println(this);
+        return x;
+    };
+    System.out.println(num1.get(3));  
+  }
+}
 ```
