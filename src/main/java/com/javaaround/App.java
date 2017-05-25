@@ -12,7 +12,7 @@ import java.util.function.Function;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
 public class App {
-   public int get(int num3){  
+   public int App(int num3){  
        return num3;
    } 
    public static void main( String[] args ){
@@ -56,9 +56,13 @@ public class App {
       listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
       for(Person person:listPersons)
         System.out.println(person);*/
-      App app = new App();
-      Number num2 = app::get;
-      System.out.println(num2.get(3));
+      String[] stringArray = { 
+        "Barbara", "James", "Mary", "John",
+        "Patricia", "Robert", "Michael", "Linda" 
+      };
+      Arrays.sort(stringArray, String::compareToIgnoreCase);
+      for(String person:stringArray)
+        System.out.println(person);
 
    }
     
