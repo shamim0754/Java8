@@ -16,6 +16,8 @@ public class App {
    public int App(int num3){  
        return num3;
    } 
+   String x; 
+   static int outerStaticNum;
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
      /* HijrahDate ramadan = HijrahDate.now()
@@ -59,12 +61,13 @@ public class App {
         System.out.println(person);*/
       // Using  a  lambda  expression
       // Uses a lambda expression
-      BiFunction<Integer, Integer, Integer> func1 = (x, y) -> Integer.sum(x, y);
-      System.out.println(func1.apply(2, 3));
-
-      // Uses a method reference
-      BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
-      System.out.println(func2.apply(2, 3)); 
+      
+      Function<String,String> func1 = y -> {
+       outerStaticNum=3;// compile error
+      return y + " ";
+      };
+      outerStaticNum=3;
+      System.out.println(func1.apply("javaaround.com"));
 
    }
     

@@ -538,9 +538,36 @@ Function<String,String> func1 = y -> {
 // x="expression"; // compile error
 return y + " "+ x ;
 };
+// x="expression"; // compile error
+
+
 System.out.println(func1.apply("javaaround.com"));
 ```
-2. this referece does not refer lambda expression type.it refer object that use lambda
+
+Note: for annomous class need final String x="lambda";
+
+2. Accessing fields and static variables : we can access to instance fields and static variables from within lambda expressions.
+
+```java
+public class App {
+   
+   String x; 
+   static int outerStaticNum;
+   public static void main( String[] args ){
+      
+      Function<String,String> func1 = y -> {
+       outerStaticNum=3;// compile error
+      return y + " ";
+      };
+      outerStaticNum=3;
+      System.out.println(func1.apply("javaaround.com"));
+
+   }
+      
+}
+```
+
+3. this referece does not refer lambda expression type.it refer object that use lambda
 ```java
 public class App {
    public static void main( String[] args ){
@@ -648,7 +675,7 @@ Method reference creates a lambda expression using using an existing method that
 	```	
 
 ### java.util.function ###
-1. Predicate
+1. Predicate : Predicates are boolean-valued functions of one argument.
 ```java
 interface Predicate<t>{
 boolean test(T t)
@@ -658,6 +685,11 @@ boolean test(T t)
 ```java
 Predicate<Integer> pr = a -> (a > 18); // Creating predicate  
 System.out.println(pr.test(10));    // Calling Predicate method
+Predicate<Boolean> nonNull = Objects::nonNull;
+Predicate<Boolean> isNull = Objects::isNull;
+
+Predicate<String> isEmpty = String::isEmpty;
+Predicate<String> isNotEmpty = isEmpty.negate();
 ```
 
 2. Function : Represents a function that accepts one arguments and produces a result.similar Consumer<T> but it has no return type
@@ -697,3 +729,4 @@ System.out.println(func1.apply(2, 3));
 BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
 System.out.println(func2.apply(2, 3)); 
 ```
+
