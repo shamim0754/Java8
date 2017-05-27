@@ -635,33 +635,19 @@ Method reference creates a lambda expression using using an existing method that
 	```
 3. Reference to a Constructor
 	```java
-	package com.javaaround;
-	import java.time.*;
-	import java.time.format.DateTimeFormatter;
-	import java.time.temporal.ChronoField;
-	import java.time.temporal.TemporalAdjusters;
-	import java.time.chrono.HijrahDate;
-	import java.time.temporal.Temporal;  
-	import java.util.*;
-	import java.util.function.Supplier;
-	import java.util.function.Predicate;
-	import java.util.function.Function;
-	import static java.time.temporal.TemporalAdjusters.*;
-	import java.util.function.Function;
-	class Message{  
-	    public Message(String msg){  
-	        System.out.print(msg);  
-	    }  
-	}  
-	public class App {
-	   public static void main( String[] args ){
-	       Messageable hello = Message::new;  
-	       hello.getMessage("Hello");  
+   package com.javaaround;
+   public static void main( String[] args ){
+      
+      PersonFactory<Person> personFactory = Person::new;
+      Person person = personFactory.create("Peter", 12,"Parker");
+      System.out.println(person);
+
 	   }
+	  
 	}
-	interface Messageable{  
-	    Message getMessage(String msg);  
-	} 
+	interface PersonFactory<P extends Person> {
+	      P create(String firstName, int age,String lastName);
+	}
 	```
 4. Reference to an Instance Method of an Arbitrary Object of a Particular Type
 	```java

@@ -62,17 +62,14 @@ public class App {
       // Using  a  lambda  expression
       // Uses a lambda expression
       
-      Function<String,String> func1 = y -> {
-       outerStaticNum=3;// compile error
-      return y + " ";
-      };
-      outerStaticNum=3;
-      System.out.println(func1.apply("javaaround.com"));
+      PersonFactory<Person> personFactory = Person::new;
+      Person person = personFactory.create("Peter", 12,"Parker");
+      System.out.println(person);
 
    }
     
   
 }
-interface Number{
-  int get(int num);
+interface PersonFactory<P extends Person> {
+      P create(String firstName, int age,String lastName);
 }
