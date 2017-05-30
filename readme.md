@@ -4,6 +4,15 @@ Java 8 provided some great feature .it is released 8 March 2014<br/>
 
 1. New Date Time api(java.time)
 2. Lambda Expression
+3. Streams
+4. Optional
+5. default methods
+6. Intersection type
+7. Nashorn Javascript
+8. Base64 Encode and Decode
+9. StringJoiner
+10. Type Annotations
+11. JDBC Improvements
 
 ### Warmup ###
 
@@ -528,7 +537,25 @@ List<Person> listPersons = new ArrayList<Person>();
   for(Person person:listPersons)
     System.out.println(person);
 ```
+### Collection forEach ###
+```java
+List<Person> listPersons = new ArrayList<Person>();
+listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
+listPersons.forEach(person->System.out.println(person));
+
+//using method reference
+listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
+
+//loop with condition
+
+listPersons.forEach(person->{
+  if("Md.Shamim Miah".equals(person.getName()))
+     System.out.println(person);
+});
+```
 ### Variable Scope ###
 1. lambda expression can access local variables that creates effectively final variable so you can't reassign
 
@@ -715,4 +742,32 @@ System.out.println(func1.apply(2, 3));
 BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
 System.out.println(func2.apply(2, 3)); 
 ```
+
+2. Stream : 
+
+consider the following SQL statement −
+
+SELECT max(salary), employee_id, employee_name FROM Employee
+The above SQL expression automatically returns the maximum salaried employee's details, without doing any computation on the developer's end. Using collections framework in Java, a developer has to use loops and make repeated checks. Another concern is efficiency; as multi-core processors are available at ease, a Java developer has to write parallel code processing that can be pretty error-prone.
+
+To resolve such issues, Java 8 introduced the concept of stream
+
+Stream represents a sequence of objects from a source, which supports aggregate operations like filter, map, limit, reduce, find, match
+
+Stream operations are divided into two category
+1.  Intermediate operation : return stream itself so that their result can be pipelined.e.g filter,map
+2.  Terminal operation : to mark the end of the stream. e.g collect(),reduce() , as well as multiple specialized reduction forms such as sum(), max(), or count().
+
+ A stream pipeline consists of a source (such as a Collection, an array, a generator function, or an I/O channel); followed by zero or more intermediate operations and a terminal operation
+
+### How to create Stream ###
+Streams can be obtained in a number of ways. Some examples include:
+1. From a Collection via the stream() and parallelStream() methods;
+2. From an array via Arrays.stream(Object[]);
+3. From static factory methods on the stream classes, such as Stream.of(Object[]), IntStream.range(int, int) or Stream.iterate(Object, UnaryOperator);
+4. The lines of a file can be obtained from BufferedReader.lines();
+5. Streams of file paths can be obtained from methods in Files;
+6. Streams of random numbers can be obtained from Random.ints();
+7. Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
+
 

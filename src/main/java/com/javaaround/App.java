@@ -62,14 +62,22 @@ public class App {
       // Using  a  lambda  expression
       // Uses a lambda expression
       
-      PersonFactory<Person> personFactory = Person::new;
-      Person person = personFactory.create("Peter", 12,"Parker");
-      System.out.println(person);
+    List<Person> listPersons = new ArrayList<Person>();
+    listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+    listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+    listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+    listPersons.forEach(person->System.out.println(person));
+
+    //using method reference
+    listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
+
+    listPersons.forEach(person->{
+      if("Md.Shamim Miah".equals(person.getName()))
+         System.out.println(person);
+    });
 
    }
     
   
-}
-interface PersonFactory<P extends Person> {
-      P create(String firstName, int age,String lastName);
 }
