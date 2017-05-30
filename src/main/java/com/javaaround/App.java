@@ -12,12 +12,9 @@ import java.util.function.Function;
 import java.util.function.BiFunction;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
+import java.util.stream.Stream;
 public class App {
-   public int App(int num3){  
-       return num3;
-   } 
-   String x; 
-   static int outerStaticNum;
+   
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
      /* HijrahDate ramadan = HijrahDate.now()
@@ -67,15 +64,13 @@ public class App {
     listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
     listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
-    listPersons.forEach(person->System.out.println(person));
-
+    Stream<Person> sListPerson =   listPersons.stream();
     //using method reference
-    listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
-
-    listPersons.forEach(person->{
-      if("Md.Shamim Miah".equals(person.getName()))
-         System.out.println(person);
-    });
+    sListPerson.forEach(System.out::println); 
+    
+    //above example at one line
+    listPersons.stream().forEach(System.out::println); 
+   
 
    }
     

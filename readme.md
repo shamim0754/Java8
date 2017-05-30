@@ -770,4 +770,23 @@ Streams can be obtained in a number of ways. Some examples include:
 6. Streams of random numbers can be obtained from Random.ints();
 7. Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
 
+### Stream Example ###
+1. Stream with forEach
+
+	```java
+	List<Person> listPersons = new ArrayList<Person>();
+    listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+    listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+    listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+    Stream<Person> sListPerson =   listPersons.stream();
+    //using method reference
+    sListPerson.forEach(System.out::println); 
+    
+    //above example at one line
+    listPersons.stream().forEach(System.out::println); 
+   
+	```
+2. Stream with forEach	
+
 

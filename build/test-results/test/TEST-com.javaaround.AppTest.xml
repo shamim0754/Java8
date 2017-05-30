@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-27T04:36:51" hostname="Shamim-PC" time="0.012">
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-30T05:27:21" hostname="Shamim-PC" time="0.022">
   <properties/>
-  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.012"/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.022"/>
   <system-out><![CDATA[Hello World!
 Person(name=Md.Shamim Miah, age=24, city=Tangail)
 Person(name=Shohel Rana, age=25, city=Rajshahi)
@@ -9,7 +9,6 @@ Person(name=Ilias Gazi, age=30, city=Natore)
 Person(name=Md.Shamim Miah, age=24, city=Tangail)
 Person(name=Shohel Rana, age=25, city=Rajshahi)
 Person(name=Ilias Gazi, age=30, city=Natore)
-Person(name=Md.Shamim Miah, age=24, city=Tangail)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
