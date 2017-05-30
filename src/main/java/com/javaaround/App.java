@@ -13,6 +13,7 @@ import java.util.function.BiFunction;
 import static java.time.temporal.TemporalAdjusters.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 public class App {
    
    public static void main( String[] args ){
@@ -60,18 +61,20 @@ public class App {
       // Uses a lambda expression
       
     List<Person> listPersons = new ArrayList<Person>();
-    listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
-    listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+    listPersons.add(new Person("Md.Shamim Miah",25,"Tangail"));  
+    listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
     listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
     Stream<Person> sListPerson =   listPersons.stream();
-    //using method reference
-    sListPerson.forEach(System.out::println); 
+    
     
     //above example at one line
-    listPersons.stream().forEach(System.out::println); 
-   
-
+    listPersons.stream()
+    //.map(person -> person.getAge())
+    .sorted()
+    //.collect(Collectors.toList())
+    .forEach(System.out::println); 
+    
    }
     
   

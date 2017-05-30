@@ -762,8 +762,8 @@ Stream operations are divided into two category
 
 ### How to create Stream ###
 Streams can be obtained in a number of ways. Some examples include:
-1. From a Collection via the stream() and parallelStream() methods;
-2. From an array via Arrays.stream(Object[]);
+1. From a Collection.stream() and Collection.parallelStream() methods;
+2. From an array via Arrays.stream(Object[]) or Stream.of(Object[];
 3. From static factory methods on the stream classes, such as Stream.of(Object[]), IntStream.range(int, int) or Stream.iterate(Object, UnaryOperator);
 4. The lines of a file can be obtained from BufferedReader.lines();
 5. Streams of file paths can be obtained from methods in Files;
@@ -771,8 +771,14 @@ Streams can be obtained in a number of ways. Some examples include:
 7. Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
 
 ### Stream Example ###
-1. Stream with forEach
+1. Stream with iterate : creating an infinite stream.	
 
+	```java
+	 Stream.iterate(1, element->element+1)  
+        .limit(5)  
+        .forEach(System.out::println);  
+	```
+2. Stream with Foreach : To iterate each element of the stream
 	```java
 	List<Person> listPersons = new ArrayList<Person>();
     listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
@@ -785,8 +791,71 @@ Streams can be obtained in a number of ways. Some examples include:
     
     //above example at one line
     listPersons.stream().forEach(System.out::println); 
-   
 	```
-2. Stream with forEach	
+2. Stream with Filter : To eliminate elements based on a criteria(using lambda)
+
+	```java
+	 listPersons.stream()
+    .filter(person -> person.getAge() >= 25)  
+    .forEach(System.out::println); 
+	```
+3. Stream with Map : Converts each element of stream to its corresponding result 
+	```java
+	listPersons.stream()
+    .map(person -> person.getAge())
+    .collect(Collectors.toList())
+    .forEach(System.out::println);
+	```
+	
+3. Stream with limit : To reduce the size of the stream
+	```java
+	 listPersons.stream()
+    .map(person -> person.getAge())
+    .limit(1)
+    .collect(Collectors.toList())
+    .forEach(System.out::println);
+	```
+3. Stream with sort : To sort the stream according to natural order. If the elements of this stream are not Comparable, java.lang.ClassCastException  thrown
+
+	```java
+	 listPersons.stream()
+    .map(person -> person.getAge())
+    .sorted()
+    .collect(Collectors.toList())
+    .forEach(System.out::println); 
+	```	
+    Uncomment below line then throw exception.expect sorted(Comparator) paramter since it person object.
+
+	```java
+	 listPersons.stream()
+    //.map(person -> person.getAge())
+    .sorted()
+    //.collect(Collectors.toList())
+    .forEach(System.out::println); 
+	```
+	Update Person.java
+
+	```java
+	public class Person implements Comparable<Person>{
+	    private String name;
+	    private Integer age;
+	    private String city;
+
+	    @Override
+	    public int compareTo(Person person){  
+	    return age.compareTo(person.age);
+	    }
+	    
+	}  
+	```
+
+	Run again no exception occur
 
 
+	you can use Comparator interface to sort by any field
+
+	```java
+	listPersons.stream()
+    .sorted((Person o1, Person o2) -> o1.getAge() - o2.getAge())
+    .forEach(System.out::println); 
+	```	

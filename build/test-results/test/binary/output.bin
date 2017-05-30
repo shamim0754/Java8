@@ -1,7 +1,4 @@
 Hello World!
-3Person(name=Md.Shamim Miah, age=24, city=Tangail)
-1Person(name=Shohel Rana, age=25, city=Rajshahi)
-.Person(name=Ilias Gazi, age=30, city=Natore)
-3Person(name=Md.Shamim Miah, age=24, city=Tangail)
-1Person(name=Shohel Rana, age=25, city=Rajshahi)
+1Person(name=Shohel Rana, age=24, city=Rajshahi)
+3Person(name=Md.Shamim Miah, age=25, city=Tangail)
 .Person(name=Ilias Gazi, age=30, city=Natore)
