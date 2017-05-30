@@ -743,7 +743,7 @@ BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
 System.out.println(func2.apply(2, 3)); 
 ```
 
-2. Stream : 
+### Stream : ### 
 
 consider the following SQL statement −
 
