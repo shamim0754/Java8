@@ -714,6 +714,7 @@ Solution 1:
 
 
 	```java
+
 	public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
       for(int i : numbers){
         try{
@@ -733,6 +734,7 @@ By above solution if Nullpointer/others  exception happens need to add catch blo
 
 
 	Solution 2 :
+
 	```java
 	process(numbers,key,(v,k) -> {
         try{
@@ -741,14 +743,16 @@ By above solution if Nullpointer/others  exception happens need to add catch blo
           System.out.println("Exception : " + ae.getMessage());
         }
       });
+
 	```
 
 By above solution 2 still similar problem
 
 Solution 3 :
-	
+
 
 	```java
+
 	process(numbers,key,wrapperLambd((v,k) ->System.out.println(v/k)));
 	
 	public static BiConsumer<Integer,Integer> wrapperLambd(BiConsumer<Integer,Integer> consumer){
@@ -760,10 +764,12 @@ Solution 3 :
          }
       };
     }
+
 	```	
 
 
 ### java.util.function ###
+
 1. Predicate : Predicates are boolean-valued functions of one argument.
 ```java
 interface Predicate<t>{
