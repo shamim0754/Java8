@@ -689,6 +689,7 @@ Method reference creates a lambda expression using using an existing method that
         System.out.println(person);
 	```	
 ### Exception Handling at lambda ###
+
 	```java
 	public class App {
 	   public static void main( String[] args ){
@@ -705,9 +706,12 @@ Method reference creates a lambda expression using using an existing method that
 	   }
 	}
 	```
+
 	java.lang.ArithmeticException happens
 
 	Solution 1:
+
+
 
 	```java
 	public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
@@ -720,8 +724,13 @@ Method reference creates a lambda expression using using an existing method that
         
       }
     }
+
 	```
+
+
 	By above solution if Nullpointer/others  exception happens need to add catch block . then long list catch block exits. Besides we don't know which exception happens because biconsumer can take any operation
+
+
 
 	Solution 2 :
 	```java
@@ -737,6 +746,7 @@ Method reference creates a lambda expression using using an existing method that
 	By above solution 2 still similar problem
 
 	Solution 3 :
+	
 
 	```java
 	process(numbers,key,wrapperLambd((v,k) ->System.out.println(v/k)));
