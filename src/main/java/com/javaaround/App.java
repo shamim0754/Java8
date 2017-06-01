@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import java.util.function.Function;
 import java.util.function.BiFunction;
 import static java.time.temporal.TemporalAdjusters.*;
-import java.util.function.Function;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 public class App {
@@ -60,7 +60,7 @@ public class App {
       // Using  a  lambda  expression
       // Uses a lambda expression
       
-    List<Person> listPersons = new ArrayList<Person>();
+    /*List<Person> listPersons = new ArrayList<Person>();
     listPersons.add(new Person("Md.Shamim Miah",25,"Tangail"));  
     listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
     listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
@@ -73,9 +73,14 @@ public class App {
     //.map(person -> person.getAge())
     .sorted()
     //.collect(Collectors.toList())
-    .forEach(System.out::println); 
-    
+    .forEach(System.out::println); */
+    String x = "Lambda"; 
+    Function<String,String> func1 = y -> {
+    // x="expression"; // compile error
+    return y + " ";
+    };
+    x="expression"; // compile not error
+
+
    }
-    
-  
 }

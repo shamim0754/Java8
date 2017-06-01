@@ -565,13 +565,15 @@ Function<String,String> func1 = y -> {
 // x="expression"; // compile error
 return y + " "+ x ;
 };
-// x="expression"; // compile error
+// x="expression"; // compile not error
 
 
 System.out.println(func1.apply("javaaround.com"));
 ```
 
-Note: for annomous class need final String x="lambda";
+Note: for annomous class and before java 8.0  need final String x="lambda"; java 8 it is assumed effectively final
+
+Here lambda expression keep tracks of value x when used this lambda later although it modified further.This concept is called closures
 
 2. Accessing fields and static variables : we can access to instance fields and static variables from within lambda expressions.
 
@@ -686,6 +688,70 @@ Method reference creates a lambda expression using using an existing method that
       for(String person:stringArray)
         System.out.println(person);
 	```	
+### Exception Handling at lambda ###
+	```java
+	public class App {
+	   public static void main( String[] args ){
+	        System.out.println( "Hello World!" );
+	    	int [] numbers = {1,2,3,5};
+	    	int key = 0;
+	    	process(numbers,key,(v,k) -> System.out.println(v/k));
+
+	   }
+	   public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
+	      for(int i : numbers){
+	        consumer.accept(i,key);
+	      }
+	   }
+	}
+	```
+	java.lang.ArithmeticException happens
+
+	Solution 1:
+
+	```java
+	public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
+      for(int i : numbers){
+        try{
+          consumer.accept(i,key);
+        }catch(ArithmeticException ae){
+          System.out.println("Exception : " + ae.getMessage());
+        }
+        
+      }
+    }
+	```
+	By above solution if Nullpointer/others  exception happens need to add catch block . then long list catch block exits. Besides we don't know which exception happens because biconsumer can take any operation
+
+	Solution 2 :
+	```java
+	process(numbers,key,(v,k) -> {
+        try{
+          System.out.println(v/k);
+        }catch(ArithmeticException ae){
+          System.out.println("Exception : " + ae.getMessage());
+        }
+      });
+	```
+
+	By above solution 2 still similar problem
+
+	Solution 3 :
+
+	```java
+	process(numbers,key,wrapperLambd((v,k) ->System.out.println(v/k)));
+	
+	public static BiConsumer<Integer,Integer> wrapperLambd(BiConsumer<Integer,Integer> consumer){
+      return (v,k)->{
+         try{
+          consumer.accept(v,k);
+         }catch(ArithmeticException ae){
+           System.out.println("Exception : " + ae.getMessage());
+         }
+      };
+    }
+	```	
+
 
 ### java.util.function ###
 1. Predicate : Predicates are boolean-valued functions of one argument.
@@ -778,7 +844,7 @@ Streams can be obtained in a number of ways. Some examples include:
         .limit(5)  
         .forEach(System.out::println);  
 	```
-2. Stream with Foreach : To iterate each element of the stream
+2. Stream with Foreach : To iterate each element of the stream.parameter java.util.function.Consumer<Person>
 	```java
 	List<Person> listPersons = new ArrayList<Person>();
     listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
@@ -792,7 +858,7 @@ Streams can be obtained in a number of ways. Some examples include:
     //above example at one line
     listPersons.stream().forEach(System.out::println); 
 	```
-2. Stream with Filter : To eliminate elements based on a criteria(using lambda)
+2. Stream with Filter : To eliminate elements based on a criteria(using lambda).parameter java.util.function.Predicate<Person>
 
 	```java
 	 listPersons.stream()
