@@ -707,9 +707,9 @@ Method reference creates a lambda expression using using an existing method that
 	}
 	```
 
-	java.lang.ArithmeticException happens
+java.lang.ArithmeticException happens
 
-	Solution 1:
+Solution 1:
 
 
 
@@ -728,7 +728,7 @@ Method reference creates a lambda expression using using an existing method that
 	```
 
 
-	By above solution if Nullpointer/others  exception happens need to add catch block . then long list catch block exits. Besides we don't know which exception happens because biconsumer can take any operation
+By above solution if Nullpointer/others  exception happens need to add catch block . then long list catch block exits. Besides we don't know which exception happens because biconsumer can take any operation
 
 
 
@@ -743,9 +743,9 @@ Method reference creates a lambda expression using using an existing method that
       });
 	```
 
-	By above solution 2 still similar problem
+By above solution 2 still similar problem
 
-	Solution 3 :
+Solution 3 :
 	
 
 	```java
