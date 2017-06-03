@@ -361,7 +361,7 @@ OffsetTime - handles time with a corresponding time zone offset from Greenwich/U
 
 
 ### Lambda Expression ###
-Provides the implementation of Functional interface(have only one method).Previously it is done by annomous class
+Provides the implementation of Functional interface(have only one method) nicer way .Previously it is done by annomous class
 
 ```java
 package com.javaaround;
@@ -897,6 +897,15 @@ Streams can be obtained in a number of ways. Some examples include:
     .collect(Collectors.toList())
     .forEach(System.out::println);
 	```
+
+	Note : Collectors enum return a list or a string
+	//delimiter ,
+	Collectors.joining(", ")
+	//delimiter , with prefix [
+	Collectors.joining(", ", "[")
+	//delimiter , with prefix [ and suffix ]
+	Collectors.joining(", ", "[", "]")
+
 3. Stream with sort : To sort the stream according to natural order. If the elements of this stream are not Comparable, java.lang.ClassCastException  thrown
 
 	```java
@@ -941,3 +950,35 @@ Streams can be obtained in a number of ways. Some examples include:
     .sorted((Person o1, Person o2) -> o1.getAge() - o2.getAge())
     .forEach(System.out::println); 
 	```	
+4. Stream with match :  check whether a certain predicate matches the .it is terminal operation and return a boolean result.
+
+	```java
+	 boolean isTangailPerson = listPersons.stream()
+    //any match return true
+    .anyMatch(person -> person.getCity() == "Tangail");
+
+    //all match return true
+    //.allMatch(person -> person.getCity() == "Tangail");
+    //no match return true
+    //.noneMatch(person -> person.getCity() == "Tangail");
+    System.out.println(isTangailPerson);
+	```
+4. Stream with count,min,max :  terminal operation(count return long) and none terminal operation(min,max  object result)
+	```java
+	//count
+    long size = listPersons.stream()
+    .count();
+    System.out.println(size);
+
+    //max
+    Person person = listPersons.stream()  
+           .max((p1, p2)->p1.getAge() > p2.getAge() ? 1: -1)
+           .get();
+    System.out.println(person);  
+
+    //min
+    Person person = listPersons.stream()  
+           .min((p1, p2)->p1.getAge() > p2.getAge() ? 1: -1)
+           .get();
+    System.out.println(person); 
+	```

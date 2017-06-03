@@ -60,27 +60,23 @@ public class App {
       // Using  a  lambda  expression
       // Uses a lambda expression
       
-    /*List<Person> listPersons = new ArrayList<Person>();
+    List<Person> listPersons = new ArrayList<Person>();
     listPersons.add(new Person("Md.Shamim Miah",25,"Tangail"));  
     listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
     listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
     Stream<Person> sListPerson =   listPersons.stream();
-    
-    
-    //above example at one line
-    listPersons.stream()
-    //.map(person -> person.getAge())
-    .sorted()
-    //.collect(Collectors.toList())
-    .forEach(System.out::println); */
-    String x = "Lambda"; 
-    Function<String,String> func1 = y -> {
-    // x="expression"; // compile error
-    return y + " ";
-    };
-    x="expression"; // compile not error
+    //count
+    long sum = listPersons.stream()
+    .map(person -> person.getAge())
+    .sum();
+    System.out.println(sum);
 
-
+    //max
+    Person person = listPersons.stream()  
+           .max((p1, p2)->p1.getAge() > p2.getAge() ? 1: -1)
+           .get();
+    System.out.println(person);   
+        
    }
 }
