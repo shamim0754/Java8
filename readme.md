@@ -1661,22 +1661,22 @@ Method reference creates a lambda expression using using an existing method that
 	```	
 ### Exception Handling at lambda ###
 
-	```java
-	public class App {
-	   public static void main( String[] args ){
-	        System.out.println( "Hello World!" );
-	    	int [] numbers = {1,2,3,5};
-	    	int key = 0;
-	    	process(numbers,key,(v,k) -> System.out.println(v/k));
+```java
+public class App {
+   public static void main( String[] args ){
+        System.out.println( "Hello World!" );
+    	int [] numbers = {1,2,3,5};
+    	int key = 0;
+    	process(numbers,key,(v,k) -> System.out.println(v/k));
 
-	   }
-	   public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
-	      for(int i : numbers){
-	        consumer.accept(i,key);
-	      }
-	   }
-	}
-	```
+   }
+   public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
+      for(int i : numbers){
+        consumer.accept(i,key);
+      }
+   }
+}
+```
 
 java.lang.ArithmeticException happens
 
@@ -1684,59 +1684,59 @@ Solution 1:
 
 
 
-	```java
+```java
 
-	public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
-      for(int i : numbers){
-        try{
-          consumer.accept(i,key);
-        }catch(ArithmeticException ae){
-          System.out.println("Exception : " + ae.getMessage());
-        }
-        
-      }
+public static void process(int[] numbers,int key,BiConsumer<Integer,Integer> consumer){
+  for(int i : numbers){
+    try{
+      consumer.accept(i,key);
+    }catch(ArithmeticException ae){
+      System.out.println("Exception : " + ae.getMessage());
     }
+    
+  }
+}
 
-	```
+```
 
 
 By above solution if Nullpointer/others  exception happens need to add catch block . then long list catch block exits. Besides we don't know which exception happens because biconsumer can take any operation
 
 
 
-	Solution 2 :
+Solution 2 :
 
-	```java
-	process(numbers,key,(v,k) -> {
-        try{
-          System.out.println(v/k);
-        }catch(ArithmeticException ae){
-          System.out.println("Exception : " + ae.getMessage());
-        }
-      });
+```java
+process(numbers,key,(v,k) -> {
+    try{
+      System.out.println(v/k);
+    }catch(ArithmeticException ae){
+      System.out.println("Exception : " + ae.getMessage());
+    }
+  });
 
-	```
+```
 
 By above solution 2 still similar problem
 
 Solution 3 :
 
 
-	```java
+```java
 
-	process(numbers,key,wrapperLambd((v,k) ->System.out.println(v/k)));
-	
-	public static BiConsumer<Integer,Integer> wrapperLambd(BiConsumer<Integer,Integer> consumer){
-      return (v,k)->{
-         try{
-          consumer.accept(v,k);
-         }catch(ArithmeticException ae){
-           System.out.println("Exception : " + ae.getMessage());
-         }
-      };
-    }
+process(numbers,key,wrapperLambd((v,k) ->System.out.println(v/k)));
 
-	```	
+public static BiConsumer<Integer,Integer> wrapperLambd(BiConsumer<Integer,Integer> consumer){
+  return (v,k)->{
+     try{
+      consumer.accept(v,k);
+     }catch(ArithmeticException ae){
+       System.out.println("Exception : " + ae.getMessage());
+     }
+  };
+}
+
+```	
 
 
 ### java.util.function ###
@@ -1778,6 +1778,7 @@ System.out.println(func2.apply(10));
 ```
 
 3. Function : Represents a function that accepts two arguments and produces a result.imilar BiConsumer<T,T> but it has no return type.
+
 ```java
 Interface BiFunction<T,R>{
 R apply(T t,U u)
@@ -1794,13 +1795,13 @@ System.out.println(func1.apply(2, 3));
 // Uses a method reference
 BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
 System.out.println(func2.apply(2, 3)); 
+
 ```
 
-### Default method : ###
+### Default method ### 
 
 Java 8 introduces “Default Method” or (Defender methods) new feature, which allows developer to add new methods to the interfaces without breaking the existing implementation of these interface
-
- For example, ‘List’ or ‘Collection’ interfaces do not have ‘forEach’ method declaration as a result it can't use lambda expression capability of Java 8. Thus, adding such method will simply break the collection framework implementations. Java 8 introduces default method so that List/Collection interface can have a default implementation of forEach method, and the class implementing these interfaces need not implement the same.
+For example, ‘List’ or ‘Collection’ interfaces do not have ‘forEach’ method declaration as a result it can't use lambda expression capability of Java 8. Thus, adding such method will simply break the collection framework implementations. Java 8 introduces default method so that List/Collection interface can have a default implementation of forEach method, and the class implementing these interfaces need not implement the same.
 
 Collection forEach(default method)
 
@@ -1841,6 +1842,7 @@ Stream operations are divided into two category
  A stream pipeline consists of a source (such as a Collection, an array, a generator function, or an I/O channel); followed by zero or more intermediate operations and a terminal operation
 
 ### How to create Stream ###
+
 Streams can be obtained in a number of ways. Some examples include:
 1. From a Collection.stream() and Collection.parallelStream() methods;
 2. From an array via Arrays.stream(Object[]) or Stream.of(Object[];
@@ -1851,6 +1853,7 @@ Streams can be obtained in a number of ways. Some examples include:
 7. Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
 
 ### Stream Example ###
+
 1. Stream with iterate : creating an infinite stream.	
 
 	```java
