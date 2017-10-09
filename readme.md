@@ -5,9 +5,9 @@ Java 8 provided some great feature .it is released 8 March 2014<br/>
 
 1. New Date Time api(java.time)
 2. Lambda Expression
-3. Streams
-4. Optional
 5. default methods
+3. Streams
+5. Optional
 6. Intersection type
 7. Nashorn Javascript
 8. Base64 Encode and Decode
