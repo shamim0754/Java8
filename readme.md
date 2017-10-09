@@ -1526,25 +1526,7 @@ List<Person> listPersons = new ArrayList<Person>();
   for(Person person:listPersons)
     System.out.println(person);
 ```
-### Collection forEach ###
-```java
-List<Person> listPersons = new ArrayList<Person>();
-listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
-listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
-listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
-listPersons.forEach(person->System.out.println(person));
-
-//using method reference
-listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
-
-//loop with condition
-
-listPersons.forEach(person->{
-  if("Md.Shamim Miah".equals(person.getName()))
-     System.out.println(person);
-});
-```
 ### Variable Scope ###
 1. lambda expression can access local variables that creates effectively final variable so you can't reassign
 
@@ -1812,6 +1794,31 @@ System.out.println(func1.apply(2, 3));
 // Uses a method reference
 BiFunction<Integer, Integer, Integer> func2 = Integer::sum;
 System.out.println(func2.apply(2, 3)); 
+```
+
+### Default method : ###
+Java 8 introduces “Default Method” or (Defender methods) new feature, which allows developer to add new methods to the interfaces without breaking the existing implementation of these interface
+
+ For example, ‘List’ or ‘Collection’ interfaces do not have ‘forEach’ method declaration as a result it can't use lambda expression capability of Java 8. Thus, adding such method will simply break the collection framework implementations. Java 8 introduces default method so that List/Collection interface can have a default implementation of forEach method, and the class implementing these interfaces need not implement the same.
+
+### Collection forEach ###
+```java
+List<Person> listPersons = new ArrayList<Person>();
+listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+listPersons.forEach(person->System.out.println(person));
+
+//using method reference
+listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
+
+//loop with condition
+
+listPersons.forEach(person->{
+  if("Md.Shamim Miah".equals(person.getName()))
+     System.out.println(person);
+});
 ```
 
 ### Stream : ### 
