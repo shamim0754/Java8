@@ -18,65 +18,6 @@ public class App {
    
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
-     /* HijrahDate ramadan = HijrahDate.now()
-                .with(ChronoField.DAY_OF_MONTH, 1).with(ChronoField.MONTH_OF_YEAR, 9);
-        System.out.println("HijrahDate : " + ramadan);
-
-        //HijrahDate -> LocalDate
-        System.out.println("\n--- Ramandan 2016 ---");
-        System.out.println("Start : " + LocalDate.from(ramadan));
-
-        //until the end of the month
-        System.out.println("End : " + LocalDate.from(ramadan.with(TemporalAdjusters.lastDayOfMonth())));*/
-        /*Person p1 = new Person();
-        p1.setName("Md.Shamim Miah");
-        p1.setAge(28);
-        Person p2 = new Person();
-        p2.setName("Md.Alamin Miah");
-        p2.setAge(36);
-        List<Person> programmers = new ArrayList<>();
-        programmers.add(p1);
-        programmers.add(p2);
-        Person.printPersonsOlderThan(programmers,new CheckPerson() {
-          @Override
-          public boolean searchCriteriaMatch(Person p) {
-              return p.getAge() >= 30;
-          }
-      });
-      Supplier<Integer> num2 = ()->{
-      return 3;
-      };
-      System.out.println(num1 + num2.get());
-      */
-     
-      /*List<Person> listPersons = new ArrayList<Person>();
-      listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
-      listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
-      listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
-      //sort by age
-      listPersons.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
-      for(Person person:listPersons)
-        System.out.println(person);*/
-      // Using  a  lambda  expression
-      // Uses a lambda expression
-      
-    List<Person> listPersons = new ArrayList<Person>();
-    listPersons.add(new Person("Md.Shamim Miah",25,"Tangail"));  
-    listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
-    listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
-
-    Stream<Person> sListPerson =   listPersons.stream();
-    //count
-    long sum = listPersons.stream()
-    .map(person -> person.getAge())
-    .sum();
-    System.out.println(sum);
-
-    //max
-    Person person = listPersons.stream()  
-           .max((p1, p2)->p1.getAge() > p2.getAge() ? 1: -1)
-           .get();
-    System.out.println(person);   
         
    }
 }

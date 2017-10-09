@@ -537,25 +537,7 @@ List<Person> listPersons = new ArrayList<Person>();
   for(Person person:listPersons)
     System.out.println(person);
 ```
-### Collection forEach ###
-```java
-List<Person> listPersons = new ArrayList<Person>();
-listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
-listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
-listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
 
-listPersons.forEach(person->System.out.println(person));
-
-//using method reference
-listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
-
-//loop with condition
-
-listPersons.forEach(person->{
-  if("Md.Shamim Miah".equals(person.getName()))
-     System.out.println(person);
-});
-```
 ### Variable Scope ###
 1. lambda expression can access local variables that creates effectively final variable so you can't reassign
 
@@ -852,6 +834,27 @@ Streams can be obtained in a number of ways. Some examples include:
 6. Streams of random numbers can be obtained from Random.ints();
 7. Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
 
+### Default method ###
+
+### Collection forEach ###
+```java
+List<Person> listPersons = new ArrayList<Person>();
+listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+listPersons.add(new Person("Shohel Rana",25,"Rajshahi"));  
+listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+listPersons.forEach(person->System.out.println(person));
+
+//using method reference
+listPersons.forEach(System.out::println); //if one parameter and operation of that parameter
+
+//loop with condition
+
+listPersons.forEach(person->{
+  if("Md.Shamim Miah".equals(person.getName()))
+     System.out.println(person);
+});
+```
 ### Stream Example ###
 1. Stream with iterate : creating an infinite stream.	
 
