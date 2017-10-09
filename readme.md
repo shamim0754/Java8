@@ -1797,12 +1797,13 @@ System.out.println(func2.apply(2, 3));
 ```
 
 ### Default method : ###
+
 Java 8 introduces “Default Method” or (Defender methods) new feature, which allows developer to add new methods to the interfaces without breaking the existing implementation of these interface
 
  For example, ‘List’ or ‘Collection’ interfaces do not have ‘forEach’ method declaration as a result it can't use lambda expression capability of Java 8. Thus, adding such method will simply break the collection framework implementations. Java 8 introduces default method so that List/Collection interface can have a default implementation of forEach method, and the class implementing these interfaces need not implement the same.
 
 Collection forEach(default method)
- 
+
 ```java
 List<Person> listPersons = new ArrayList<Person>();
 listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
