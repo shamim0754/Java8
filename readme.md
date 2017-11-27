@@ -1984,3 +1984,13 @@ Streams can be obtained in a number of ways. Some examples include:
     System.out.println(person); 
 	```
 	
+### Optional ###
+
+Java SE 8 introduces a new class called java.util.Optional<T> that is inspired from the ideas of Haskell and Scala.It is a class that encapsulates an optional value(either contains a value or doesn't (it is then said to be "empty")) instead of null reference
+
+	![Image of Nested](images/2175762.gif.png) 
+
+### Advantage Optional ###
+
+1. Null checks are not required.	
+2. No more NullPointerException at run-time.	
