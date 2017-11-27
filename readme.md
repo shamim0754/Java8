@@ -1983,12 +1983,27 @@ Streams can be obtained in a number of ways. Some examples include:
            .get();
     System.out.println(person); 
 	```
-	
+5. Stream with group by
+
+	```java
+	  List<Person> listPersons = new ArrayList<Person>();
+	  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+	  listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
+	  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+	  Map<Integer, List<Person>> personsByAge = listPersons
+      .stream()
+      .collect(Collectors.groupingBy(p -> p.getAge()));
+
+	  personsByAge
+     .forEach((age, p) -> System.out.format("age %s: %s\n", age, p)); 
+	```
+
 ### Optional ###
 
 Java SE 8 introduces a new class called java.util.Optional<T> that is inspired from the ideas of Haskell and Scala.It is a class that encapsulates an optional value(either contains a value or doesn't (it is then said to be "empty")) instead of null reference
 
-	![Image of Nested](images/2175762.gif.png) 
+	![Image of Nested](images/2175762.gif) 
 
 ### Advantage Optional ###
 

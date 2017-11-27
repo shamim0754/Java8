@@ -18,6 +18,17 @@ public class App {
    
    public static void main( String[] args ){
       System.out.println( "Hello World!" );
+      List<Person> listPersons = new ArrayList<Person>();
+	  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+	  listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
+	  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+	  Map<Integer, List<Person>> personsByAge = listPersons
+      .stream()
+      .collect(Collectors.groupingBy(p -> p.getAge()));
+
+	  personsByAge
+     .forEach((age, p) -> System.out.format("age %s: %s\n", age, p)); 
         
    }
 }

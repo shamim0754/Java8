@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-27T14:50:27" hostname="shamim-HP-240-G5-Notebook-PC" time="0.001">
+<testsuite name="com.javaaround.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-27T15:25:10" hostname="shamim-HP-240-G5-Notebook-PC" time="0.096">
   <properties/>
-  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.001"/>
+  <testcase name="testMain" classname="com.javaaround.AppTest" time="0.096"/>
   <system-out><![CDATA[Hello World!
+age 24: [Person(name=Md.Shamim Miah, age=24, city=Tangail), Person(name=Shohel Rana, age=24, city=Rajshahi)]
+age 30: [Person(name=Ilias Gazi, age=30, city=Natore)]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
