@@ -1882,12 +1882,22 @@ Streams can be obtained in a number of ways. Some examples include:
     .filter(person -> person.getAge() >= 25)  
     .forEach(System.out::println); 
 	```
-3. Stream with Map : Converts each element of stream to its corresponding result 
+3. Stream with Map : Converts each element of stream to its corresponding result type 
 	```java
 	listPersons.stream()
-    .map(person -> person.getAge())
+    .map(person -> person.getAge()) // Stream<String>
     .collect(Collectors.toList())
     .forEach(System.out::println);
+	```
+
+	map() works pretty well in such a simple case, but what if we have something more complex such as a list of lists as an input(Stream<List<String>>, Stream<String[]>).
+
+	`<R> Stream<R> flatMap(Function<? super T,? extends Stream<? extends R>> mapper)`
+
+	```java
+	List<List<String>> list = Arrays.asList(Arrays.asList("a"),Arrays.asList("b"));
+   	Stream<String> stringStream = list.stream().flatMap(Collection::stream);
+   	stringStream.forEach(System.out::println)
 	```
 	
 3. Stream with limit : To reduce the size of the stream
@@ -1983,7 +1993,11 @@ Streams can be obtained in a number of ways. Some examples include:
            .get();
     System.out.println(person); 
 	```
-5. Stream with group by
+5. Stream with Collectors
+	
+	Collectors is an extremely useful terminal operation to transform the elements of the stream into a different kind of result, e.g. a List, Set or Map. 
+
+	1. Collectors Group by 
 
 	```java
 	  List<Person> listPersons = new ArrayList<Person>();
@@ -1997,11 +2011,174 @@ Streams can be obtained in a number of ways. Some examples include:
 
 	  personsByAge
      .forEach((age, p) -> System.out.format("age %s: %s\n", age, p)); 
+
+     /*
+         age 24: [Person(name=Md.Shamim Miah, age=24, city=Tangail), Person(name=Shohel Rana, age=24, city=Rajshahi)]
+    age 30: [Person(name=Ilias Gazi, age=30, city=Natore)]
+
+     */
 	```
+
+	2. Collectors Aggregate
+
+	```java
+	  List<Person> listPersons = new ArrayList<Person>();
+	  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+	  listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
+	  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+	  Double averageAge = listPersons
+	  .stream()
+	  .collect(Collectors.averagingInt(p -> p.getAge()));
+
+	  System.out.println(averageAge); //26
+	```
+
+	3. Collection with summarize
+
+	```java
+	List<Person> listPersons = new ArrayList<Person>();
+	  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+	  listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
+	  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+	  IntSummaryStatistics ageSummary = listPersons
+        .stream()
+        .collect(Collectors.summarizingInt(p -> p.getAge()));
+
+      System.out.println(ageSummary); //IntSummaryStatistics{count=3, sum=78, min=24, average=26.000000, max=30}
+
+
+	```
+
+	3. Collection converts map
+
+	```java
+	List<Person> listPersons = new ArrayList<Person>();
+	  listPersons.add(new Person("Md.Shamim Miah",24,"Tangail"));  
+	  listPersons.add(new Person("Shohel Rana",24,"Rajshahi"));  
+	  listPersons.add(new Person("Ilias Gazi",30,"Natore"));  
+
+	  Map<Integer, String> map = listPersons
+      .stream()
+      .collect(Collectors.toMap(
+        p -> p.age,
+        p -> p.name,
+        (name1, name2) -> name1 + " and " + name2));
+
+      System.out.println(map); 
+	```
+
+	4. Custom Collection: Collectors consists of four different operations
+
+	1. Creation of a new result container (supplier())
+	2. create a function that defines how we’ll add  a new data element into a result container (accumulator())
+	3.he combiner is a function that defines how two result containers could be combined. (combiner())
+	4.Performing an optional final transform on the container (finisher())
+
+	```java
+	interface Collector<T,A,R> {
+    Supplier<A>          supplier()
+    BiConsumer<A,T>      acumulator() 
+    BinaryOperator<A>    combiner() 
+    Function<A,R>        finisher()
+    Set<Characteristics> characteristics()
+	} 
+	```
+
+	T - type of stream elements <br>
+	A - type of a helper object that will be used to keep partial results of collect operation. I will call this helper object an accumulator object<br>
+	R - type of collect operation result
+
+	```java
+	Collector<Person, StringJoiner, String> personNameCollector =
+    Collector.of(
+        () -> new StringJoiner(" | "),          // supplier
+        (j, p) -> j.add(p.name.toUpperCase()),  
+        (j1, j2) -> j1.merge(j2),               
+        StringBuilder::toString);                
+
+		String names = listPersons
+		    .stream()
+		    .collect(personNameCollector);
+
+		System.out.println(names); 
+	```
+
+### StringJoiner ###
+	
+
+1. Join String by a delimiter
+
+	```java
+	String result = String.join("/", "2017", "10", "31" );
+      System.out.println( result ); // 2017/10/31
+	``` 
+2. Join a List by a delimiter.
+	```java
+	  List<String> list = Arrays.asList("java", "python", "nodejs", "ruby");
+      String result = String.join(", ", list);
+      System.out.println( result ); //java, python, nodejs, ruby
+	``` 
+
+StringJoiner is used to construct a sequence of characters separated by a delimiter and optionally starting with a supplied prefix and ending with a supplied suffix and internally use String.join()
+	
+	1. StringJoiner String by a delimiter.
+
+	```java
+	StringJoiner sj = new StringJoiner("/");
+        sj.add("2017");
+        sj.add("10");
+        sj.add("31");
+        String result = sj.toString(); 
+        System.out.println( result );// 2017/10/31
+	```
+
+	StringJoiner with prefix and sufix
+
+	```java
+	StringJoiner sj = new StringJoiner("/","[","]");
+        sj.add("2017");
+        sj.add("10");
+        sj.add("31");
+        String result = sj.toString(); 
+        System.out.println( result ); // [2017/10/31]
+	```
+
+	2. StringJoiner a List by a delimiter.
+
+	```java
+	List<String> list = Arrays.asList("java", "python", "nodejs", "ruby");
+	StringJoiner result = new StringJoiner("|");
+	for (String element : list) {
+	    result.add(element);
+	}
+	System.out.println( result );
+	```
+
+	Equivalen javacode without StringJoiner
+
+	```StringBuilder builder = new StringBuilder();
+	builder.append("[");
+	if (!list.isEmpty()) {
+	    builder.append(list.get(0));
+	    for (int i = 1, n = list.size(); i < n; i++) {
+	        builder.append(",").append(list.get(i));
+	    }
+	}
+	builder.append("]");
+	```
+
+	StringJoiner may be employed to create formatted output from a Stream using Collectors.joining(CharSequence)
+
+
+for example
+
+1. 	-> flatMap ->	Stream<String>
 
 ### Optional ###
 
-Java SE 8 introduces a new class called java.util.Optional<T> that is inspired from the ideas of Haskell and Scala.It is a class that encapsulates an optional value(either contains a value or doesn't (it is then said to be "empty")) instead of null reference
+Java SE 8 introduces a new class called java.util.Opional<T> that is inspired from the ideas of Haskell and Scala.It is a class that encapsulates an optional value(either contains a value or doesn't (it is then said to be "empty")) instead of null reference
 
 	![Image of Nested](images/2175762.gif) 
 
