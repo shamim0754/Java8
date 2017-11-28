@@ -2112,16 +2112,17 @@ Streams can be obtained in a number of ways. Some examples include:
 
 	```java
 	String result = String.join("/", "2017", "10", "31" );
-      System.out.println( result ); // 2017/10/31
+    System.out.println( result ); // 2017/10/31
 	``` 
 2. Join a List by a delimiter.
+
 	```java
 	  List<String> list = Arrays.asList("java", "python", "nodejs", "ruby");
       String result = String.join(", ", list);
       System.out.println( result ); //java, python, nodejs, ruby
 	``` 
 
-StringJoiner is used to construct a sequence of characters separated by a delimiter and optionally starting with a supplied prefix and ending with a supplied suffix and internally use String.join()
+	StringJoiner is used to construct a sequence of characters separated by a delimiter and optionally starting with a supplied prefix and ending with a supplied suffix and internally use String.join()
 	
 	1. StringJoiner String by a delimiter.
 
